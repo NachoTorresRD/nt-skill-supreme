@@ -1,6 +1,6 @@
 # 👑 NT-SKILL SUPREME: Global Agent System Rules
 
-This document defines the mandatory design principles, code style rules, white-label directives, and rapid agency production guidelines for all AI models operating in Cursor, Codex, Trae, Windsurf, OpenCode, Gemini Antigravity, and Claude.
+This document defines the mandatory design principles, code style rules, white-label directives, and rapid production guidelines for all AI models operating in Cursor, Codex, Trae, Windsurf, OpenCode, Gemini Antigravity, and Claude.
 
 ---
 
@@ -10,30 +10,47 @@ This document defines the mandatory design principles, code style rules, white-l
 
 ---
 
-### 🚀 RAPID AGENCY PRODUCTION DIRECTIVE (1-2 DAY DELIVERY SCHEME)
-- **Zero Incomplete Code**: When requested to build a client site (`/build-client-site`), NEVER output truncated blocks, `// TODO: add rest of sections`, or pseudo-code placeholders. Output the complete, production-ready HTML, CSS, and JS.
-- **Conversion Standard**: Every commercial site must include:
-  1. Sticky Navigation Header + Mobile Drawer Menu
-  2. High-Converting Hero with Dual CTAs & Social Proof Stack
-  3. Interactive Feature/Services Bento Grid
-  4. Interactive Pricing Matrix or Quote Estimator
-  5. Floating WhatsApp Button (`wa.me/`) for instant customer lead capture
-  6. Accordion FAQ Section
-  7. High-converting Lead Form + Footer
-- **Rapid Customization**: Structure variables and tokens at the top of the CSS file so the user can change brand colors and fonts in under 60 seconds.
+### 🛡️ GROUNDED DATA & ZERO FAKE STATS POLICY
+- **NEVER invent customer metrics, star counts, fake reviews, fake testimonials, fake awards, or unverified conversion statistics.**
+- When real client data is unavailable during development, use explicit placeholders (e.g., `[Placeholder: Client Count]`, `[Placeholder: Customer Review]`) or prompt the user for their exact metrics.
 
 ---
 
-## 🎨 Golden Rules of Design & Frontend Quality
+### 🏗️ RESPECT EXISTING CODEBASES & ARCHITECTURES
+- Before modifying an existing project, inspect the existing framework (React, Vue, Next.js, Svelte, HTML), styling solution (Tailwind, CSS Modules, Styled Components), and UI component libraries (Shadcn, Radix, Chakra).
+- **Elevate existing codebases in-place.** Do NOT replace Tailwind with raw CSS or rewrite established component libraries without explicit user consent.
 
-### 1. Aesthetic Excellence (Zero Generic Slop)
-- **Never produce generic AI template designs.** Plain white backgrounds with basic blue buttons and default drop shadows are strictly forbidden.
-- Use curated, rich HSL color palettes with subtle dark mode gradients, glassmorphism card surfaces, backdrop filters (`backdrop-blur-md`), and glowing accent subtle borders (`border border-white/10`).
+---
 
-### 2. Micro-Interactions & Motion Physics
-- **Tactile Click Feedback**: All interactive elements must feature instant scale press response: `transform: scale(0.96)` at 100ms.
-- **3D Card Tilt**: Include interactive 3D perspective rotation (`rotateX`, `rotateY`) on hover cards with specular glare highlights.
+### 🎨 VISUAL PROFILES & PRODUCT CONTEXT
 
-### 3. Image Generation & Fallback Protocol
-- Synthesize contextual photography when image generation tools are present.
-- If image generation tools are absent, fall back to high-resolution Unsplash URLs (`object-fit: cover`) or inline gradient SVG icons. Never output empty text placeholders.
+Apply the appropriate visual profile according to intent:
+- **`minimal`**: Editorial cleanliness, typography focus, whitespace rhythm, subtle motion, zero neon/glow clutter.
+- **`balanced`** *(Default)*: Premium aesthetic, tactile micro-interactions, moderate depth, WCAG AA contrast, smooth spring physics.
+- **`supreme`**: Advanced 3D perspective tilt, spotlight tracking, native scroll-driven animations, parallax depth.
+
+Contextual Boundaries:
+- **Dashboards**: Prioritize data density, crisp tables, side navigation, loading states. Disable 3D card tilt on forms/tables. Do NOT auto-inject WhatsApp buttons.
+- **Local Business**: Include floating WhatsApp contact button (`wa.me/`), physical address, operating hours, and booking CTAs.
+- **Landing Pages**: Feature a 3-second value hero, single dominant primary CTA, adjacent social proof, and streamlined lead forms.
+
+---
+
+### ♿ ACCESSIBILITY & MOTION SAFEGUARDS
+
+1. **Pointer/Hover Safeguard**: Wrap all 3D tilt and mouse spotlight tracking effects in fine-pointer media queries:
+   ```css
+   @media (hover: hover) and (pointer: fine) {
+     /* 3D tilt and cursor spotlights */
+   }
+   ```
+2. **Reduced Motion**: Respect system motion preferences:
+   ```css
+   @media (prefers-reduced-motion: reduce) {
+     *, ::before, ::after {
+       animation-duration: 0.01ms !important;
+       transition-duration: 0.01ms !important;
+     }
+   }
+   ```
+3. **Keyboard & Focus**: Maintain visible focus rings (`focus-visible:ring-2 focus-visible:ring-primary`). Modals must trap focus and close on `Escape`.

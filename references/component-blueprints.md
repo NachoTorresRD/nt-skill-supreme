@@ -1,4 +1,4 @@
-# NT-Design Engine: Component Blueprints & Rapid Snippets
+# NT-Design Engine: Component Blueprints & Snippets
 
 *Production-ready HTML, CSS, and JS snippets designed for instantaneous client site assembly.*
 
@@ -16,14 +16,14 @@
       <a href="#pricing">Pricing</a>
       <a href="#contact" class="btn btn-primary">Book Consultation</a>
     </nav>
-    <button class="hamburger mobile-only" onclick="toggleMobileNav()" aria-label="Toggle Menu">
+    <button class="hamburger mobile-only" onclick="toggleMobileNav()" aria-label="Toggle Navigation Menu">
       <span></span><span></span><span></span>
     </button>
   </div>
 </header>
 
-<div class="mobile-drawer" id="mobileDrawer">
-  <button class="close-drawer" onclick="toggleMobileNav()">&times;</button>
+<div class="mobile-drawer" id="mobileDrawer" role="dialog" aria-modal="true" aria-label="Mobile Navigation">
+  <button class="close-drawer" onclick="toggleMobileNav()" aria-label="Close Navigation">&times;</button>
   <a href="#services" onclick="toggleMobileNav()">Services</a>
   <a href="#about" onclick="toggleMobileNav()">About</a>
   <a href="#pricing" onclick="toggleMobileNav()">Pricing</a>
@@ -54,7 +54,7 @@
 
 ---
 
-## ⚡ 2. High-Converting Hero with Social Proof Stack
+## ⚡ 2. High-Converting Hero with Social Proof Stack (Grounded Data)
 
 ```html
 <section class="hero">
@@ -63,13 +63,15 @@
       <div class="avatar-stack">
         <span class="avatar">👤</span><span class="avatar">👤</span><span class="avatar">👤</span>
       </div>
-      <span>Joined by +1,200 satisfied clients</span>
+      <span>[Placeholder: Real Client Rating / Social Proof Stat]</span>
     </div>
     <h1 class="hero-title">Transform Your Business Operations In Days, Not Months.</h1>
-    <p class="hero-lead">We deliver high-end, conversion-focused websites that capture leads on autopilot.</p>
+    <p class="hero-lead">We deliver high-end, conversion-focused websites tailored to your commercial goals.</p>
     <div class="hero-ctas">
+      <!-- Visually Dominant Primary CTA -->
       <a href="#contact" class="btn btn-primary">Get Started Now</a>
-      <a href="https://wa.me/1234567890" target="_blank" class="btn btn-secondary">💬 Chat on WhatsApp</a>
+      <!-- Lower Hierarchy Secondary CTA -->
+      <a href="#services" class="btn btn-ghost">Learn More &rarr;</a>
     </div>
   </div>
 </section>
@@ -85,8 +87,8 @@
     <h2>Transparent Pricing</h2>
     <div class="toggle-container">
       <span>Monthly</span>
-      <input type="checkbox" id="billingToggle" onchange="toggleBilling()">
-      <span>Annual (Save 20%)</span>
+      <input type="checkbox" id="billingToggle" onchange="toggleBilling()" aria-label="Toggle Annual Billing">
+      <span>Annual (Discounted)</span>
     </div>
   </div>
   <div class="pricing-cards">
@@ -95,21 +97,20 @@
       <div class="price" id="basicPrice">$29<span>/mo</span></div>
       <ul>
         <li>✓ Full Responsive Design</li>
-        <li>✓ WhatsApp Integration</li>
         <li>✓ SEO Optimization</li>
       </ul>
-      <a href="#contact" class="btn btn-secondary">Choose Basic</a>
+      <a href="#contact" class="btn btn-secondary">Select Basic</a>
     </div>
     <div class="card pricing-card featured">
-      <span class="badge">Most Popular</span>
-      <h3>Pro Growth Plan</h3>
+      <span class="badge">Recommended</span>
+      <h3>Pro Plan</h3>
       <div class="price" id="proPrice">$79<span>/mo</span></div>
       <ul>
         <li>✓ Everything in Basic</li>
         <li>✓ Custom Booking System</li>
         <li>✓ Priority Support</li>
       </ul>
-      <a href="#contact" class="btn btn-primary">Choose Pro</a>
+      <a href="#contact" class="btn btn-primary">Select Pro</a>
     </div>
   </div>
 </section>
@@ -124,13 +125,14 @@
 
 ---
 
-## 💬 4. Floating WhatsApp Contact Button (Conversion Essential)
+## 💬 4. Contextual WhatsApp Floating Button (Local Business Only)
 
 ```html
-<a href="https://wa.me/YOUR_PHONE_NUMBER?text=Hello!%20I%20want%20more%20information." 
+<!-- Include for Local Business, Dental, Medical, Restaurant, or Local Services -->
+<a href="https://wa.me/YOUR_PHONE_NUMBER?text=Hello!%20I%20would%20like%20more%20information." 
    target="_blank" 
    class="whatsapp-float" 
-   aria-label="Contact on WhatsApp">
+   aria-label="Chat on WhatsApp">
   <svg width="28" height="28" viewBox="0 0 24 24" fill="white">
     <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-0.999 3.648 3.742-0.981z"/>
   </svg>
@@ -144,7 +146,9 @@
     box-shadow: 0 10px 25px rgba(37, 211, 102, 0.4);
     transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1);
   }
-  .whatsapp-float:hover { transform: scale(1.1); }
+  @media (hover: hover) and (pointer: fine) {
+    .whatsapp-float:hover { transform: scale(1.1); }
+  }
   .whatsapp-float:active { transform: scale(0.95); }
 </style>
 ```
