@@ -1,0 +1,26 @@
+{
+  "name": "nt-skill-supreme",
+  "version": "1.0.0",
+  "description": "The master AI design engineering, UI/UX, aesthetic taste, zero-slop, micro-interactions, 3D tilt, and rapid agency production skill for AI agents (Gemini Antigravity, Claude, Cursor, Codex, Trae).",
+  "main": "SKILL.md",
+  "bin": {
+    "nt-skill-supreme": "./bin/cli.js"
+  },
+  "keywords": [
+    "nt-skill-supreme",
+    "ai-skill",
+    "design-system",
+    "ui-ux",
+    "antigravity",
+    "claude-skill",
+    "cursor-rules",
+    "zero-slop",
+    "agency-engine"
+  ],
+  "author": "NachoTorresRD",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/NachoTorresRD/nt-skill-supreme.git"
+  }
+}
