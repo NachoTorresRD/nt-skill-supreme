@@ -1,7 +1,7 @@
 # 👑 NT-SKILL SUPREME
 
 <p align="center">
-  <a href="#-english">es Español</a> | <b>us English</b>
+  <a href="./README.es.md">es Español</a> | <b>us English</b>
 </p>
 
 <p align="center">
@@ -18,18 +18,6 @@
 
 <p align="center">
   <img src="./assets/banner.png" alt="NT-SKILL SUPREME Design Intelligence" width="100%" style="border-radius: 16px;">
-</p>
-
----
-
-## 🚀 Works With All Modern AI Assistants
-
-<p align="center">
-  <img src="https://img.shields.io/badge/Works%20With-Google%20Gemini%20Antigravity-4285F4?style=for-the-badge&logo=google&logoColor=white" alt="Antigravity">
-  <img src="https://img.shields.io/badge/Works%20With-Claude%20Code-D97706?style=for-the-badge&logo=anthropic&logoColor=white" alt="Claude">
-  <img src="https://img.shields.io/badge/Works%20With-Cursor-000000?style=for-the-badge&logo=cursor&logoColor=white" alt="Cursor">
-  <img src="https://img.shields.io/badge/Works%20With-Windsurf-06B6D4?style=for-the-badge" alt="Windsurf">
-  <img src="https://img.shields.io/badge/Works%20With-Trae%20%26%20Codex-10B981?style=for-the-badge" alt="Trae">
 </p>
 
 ---
@@ -55,20 +43,64 @@ npx nt-skill-supreme init
 
 ---
 
-## 🔥 Key Feature Pillars
+## 💥 The Real Transformation: Before vs After
 
-| Feature Pillar | Included Capabilities | Architecture |
+Why do websites generated with **NT-SKILL SUPREME** convert and amaze clients on first sight?
+
+| UX / UI Feature | ❌ Without Skill (Standard AI Generation) | 🚀 With NT-SKILL SUPREME |
 |---|---|---|
-| **Zero-Slop Taste** | Ban generic templates, curated adaptive HSL palettes, fluid typography, ambient glassmorphism. | `NT-Skill Supreme Engine` |
-| **Tactile Motion Physics** | Physics-based spring mechanics, `:active` tactile scaling (`scale(0.96)`), 3D card hover tilt, origin-aware popovers. | `NT-Skill Supreme Engine` |
-| **2026 CRO Psychology** | 3-Second value rule, near-CTA social proof, ultra-minimal forms, ergonomic mobile action anchors. | `NT-Skill Supreme Engine` |
-| **Agency Production Engine** | Build 100% complete, multi-section client websites in minutes (`/build-client-site`) across top commercial niches. | `NT-Skill Supreme Engine` |
-| **Image Fallback Engine** | Auto-synthesize photorealistic visual assets or gracefully fall back to Unsplash photos & inline gradient SVGs. | `NT-Skill Supreme Engine` |
-| **WCAG 2.1 AA** | Keyboard focus rings (`focus-visible`), aria landmarks, screen reader announcements, color contrast verification. | `W3C Standards` |
+| **Design & Palettes** | Plain white background, default `#3b82f6` blue buttons ("AI Slop") | Adaptive dark HSL palettes, glassmorphism `backdrop-blur-md`, and ambient glows |
+| **Click Feedback** | Static buttons/cards, no tactile feedback on press | Instant tactile press response `:active scale(0.96)` at 100ms |
+| **Hover & Cursor** | Flat static cards without depth | Dynamic **3D Card Hover Tilt** following cursor with specular glare highlights |
+| **Scroll Animations** | Zero motion or heavy JS libraries causing lag | Fluid, native GPU-accelerated CSS `animation-timeline: view()` reveals |
+| **CRO Psychology** | Long boring forms and generic headlines | 3-Second value rule, near-CTA social proof, and floating WhatsApp lead capture |
+| **Images & Fallbacks** | Broken text boxes like `[Insert Image]` | Photorealistic AI assets or graceful Unsplash/SVG fallbacks |
 
 ---
 
-## 🛠 Direct Commands & Workflows
+## 🛠 Code & Component Showcase
+
+### 1. Tactile Scale Physics `:active scale(0.96)`
+The skill forces the AI assistant to inject tactile press responses on every interactive element:
+
+```css
+.btn-supreme {
+  transition: transform 160ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Instant tactile click feedback */
+.btn-supreme:active {
+  transform: scale(0.96);
+}
+```
+
+### 2. 3D Tilt Cards with Dynamic Specular Reflection
+```javascript
+function handleTilt(e, card) {
+  const rect = card.getBoundingClientRect();
+  const x = e.clientX - rect.left;
+  const y = e.clientY - rect.top;
+  const rotateX = ((y - rect.height/2) / (rect.height/2)) * -12;
+  const rotateY = ((x - rect.width/2) / (rect.width/2)) * 12;
+  
+  card.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`;
+  card.style.setProperty('--mouse-x', `${(x / rect.width) * 100}%`);
+  card.style.setProperty('--mouse-y', `${(y / rect.height) * 100}%`);
+}
+```
+
+### 3. Floating WhatsApp CTA for Direct Conversions
+```html
+<a href="https://wa.me/PHONE?text=Hello!%20I%20want%20information" target="_blank" class="whatsapp-float">
+  <svg width="30" height="30" viewBox="0 0 24 24" fill="white">
+    <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-0.999 3.648 3.742-0.981z"/>
+  </svg>
+</a>
+```
+
+---
+
+## 🚀 Direct Commands
 
 | Command | Action |
 |---|---|
