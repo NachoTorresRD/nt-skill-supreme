@@ -1,0 +1,788 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="DentalCare Pro - Showcase oficial producido con NT-SKILL SUPREME + Gemini Antigravity. Odontología digital de precisión y estética dental.">
+  <title>DentalCare Pro | Showcase Oficial NT-SKILL SUPREME</title>
+
+  <!-- Google Fonts: Outfit, Plus Jakarta Sans, JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Outfit:wght@500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg-dark: #070a12;
+      --bg-surface-1: rgba(255, 255, 255, 0.03);
+      --bg-surface-2: rgba(255, 255, 255, 0.06);
+      --border-subtle: rgba(255, 255, 255, 0.08);
+      --border-highlight: rgba(6, 182, 212, 0.35);
+      
+      --accent-cyan: #06b6d4;
+      --accent-cyan-hover: #0891b2;
+      --accent-navy: #0f172a;
+      --accent-emerald: #10b981;
+      --accent-amber: #f59e0b;
+
+      --text-primary: #f8fafc;
+      --text-secondary: #94a3b8;
+      --text-muted: #64748b;
+
+      --font-display: 'Outfit', sans-serif;
+      --font-body: 'Plus Jakarta Sans', sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+
+      --ease-spring: cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      background-color: var(--bg-dark);
+      color: var(--text-primary);
+      font-family: var(--font-body);
+      min-height: 100vh;
+      overflow-x: hidden;
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Accessibility Focus Visible Ring */
+    :focus-visible {
+      outline: none;
+      box-shadow: 0 0 0 2px var(--bg-dark), 0 0 0 4px var(--accent-cyan);
+      border-radius: 8px;
+    }
+
+    /* Scroll Reading Progress Bar */
+    .scroll-progress-bar {
+      position: fixed; top: 0; left: 0; right: 0; height: 3px;
+      background: linear-gradient(90deg, var(--accent-cyan), var(--accent-emerald));
+      transform-origin: 0%; animation: pageProgress linear; animation-timeline: scroll();
+      z-index: 1000;
+    }
+    @keyframes pageProgress { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+
+    /* Ambient Glows */
+    .glow-spotlight {
+      position: fixed; width: 600px; height: 600px; border-radius: 50%;
+      filter: blur(140px); pointer-events: none; z-index: 0; opacity: 0.3;
+    }
+    .spot-1 { top: -150px; left: 5%; background: radial-gradient(circle, var(--accent-cyan) 0%, transparent 70%); }
+    .spot-2 { bottom: -150px; right: 5%; background: radial-gradient(circle, var(--accent-emerald) 0%, transparent 70%); }
+
+    .app-container { position: relative; z-index: 1; max-width: 1200px; margin: 0 auto; padding: 0 1.5rem; }
+
+    /* Navbar */
+    header.navbar {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(7, 10, 18, 0.85); backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border-subtle); padding: 0.9rem 0;
+    }
+    .nav-inner { display: flex; align-items: center; justify-content: space-between; }
+    .brand-logo {
+      display: flex; align-items: center; gap: 0.6rem;
+      font-family: var(--font-display); font-weight: 800; font-size: 1.25rem;
+      color: var(--text-primary); text-decoration: none;
+    }
+    .brand-icon {
+      width: 38px; height: 38px; border-radius: 10px;
+      background: linear-gradient(135deg, var(--accent-cyan), var(--accent-emerald));
+      display: flex; align-items: center; justify-content: center; font-size: 1.1rem;
+    }
+    .nav-links { display: flex; align-items: center; gap: 2rem; }
+    .nav-links a { color: var(--text-secondary); text-decoration: none; font-size: 0.95rem; font-weight: 500; transition: color 0.2s; }
+    .nav-links a:hover { color: var(--accent-cyan); }
+
+    /* Tactile Buttons */
+    .btn {
+      font-family: var(--font-body); font-weight: 600; font-size: 0.95rem;
+      padding: 0.75rem 1.4rem; border-radius: 12px; border: 1px solid transparent;
+      cursor: pointer; display: inline-flex; align-items: center; gap: 0.5rem;
+      text-decoration: none; min-height: 44px; min-width: 44px; justify-content: center;
+      transition: transform 0.16s var(--ease-spring), background 0.2s, box-shadow 0.2s;
+      user-select: none;
+    }
+    .btn:active { transform: scale(0.96); }
+
+    /* Visually Dominant Primary CTA */
+    .btn-primary {
+      background: linear-gradient(135deg, var(--accent-cyan), var(--accent-cyan-hover));
+      color: white; box-shadow: 0 4px 20px rgba(6, 182, 212, 0.35);
+    }
+    .btn-primary:hover { box-shadow: 0 6px 28px rgba(6, 182, 212, 0.5); transform: translateY(-1px); }
+
+    /* Lower Hierarchy Secondary CTA */
+    .btn-secondary {
+      background: var(--bg-surface-2); border-color: var(--border-subtle); color: var(--text-primary);
+    }
+    .btn-secondary:hover { background: rgba(255, 255, 255, 0.1); border-color: var(--border-highlight); }
+
+    /* Mobile Hamburger Trigger */
+    .hamburger-btn {
+      display: none; background: var(--bg-surface-2); border: 1px solid var(--border-subtle);
+      color: white; border-radius: 10px; width: 44px; height: 44px; cursor: pointer;
+      align-items: center; justify-content: center; font-size: 1.2rem;
+    }
+
+    /* Mobile Drawer */
+    .mobile-drawer {
+      position: fixed; top: 0; right: 0; width: 85%; max-width: 360px; height: 100vh; z-index: 200;
+      background: #0f172a; padding: 2.5rem 1.5rem; display: flex; flex-direction: column; gap: 1.5rem;
+      transform: translateX(100%); transition: transform 0.3s var(--ease-spring);
+      box-shadow: -10px 0 30px rgba(0, 0, 0, 0.7);
+    }
+    .mobile-drawer.open { transform: translateX(0); }
+    .close-drawer { align-self: flex-end; background: none; border: none; color: white; font-size: 1.8rem; cursor: pointer; min-width: 44px; min-height: 44px; }
+    .drawer-overlay {
+      position: fixed; inset: 0; background: rgba(0,0,0,0.6); backdrop-filter: blur(4px);
+      z-index: 199; opacity: 0; pointer-events: none; transition: opacity 0.3s ease;
+    }
+    .drawer-overlay.open { opacity: 1; pointer-events: auto; }
+
+    /* Hero Section (3-Second Value Rule + Social Proof Badge) */
+    .hero-grid {
+      display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 3rem; align-items: center;
+      padding: 4.5rem 0 3.5rem;
+    }
+
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 0.6rem;
+      padding: 0.4rem 1rem; background: var(--bg-surface-2); border: 1px solid var(--border-subtle);
+      border-radius: 999px; margin-bottom: 1.5rem; font-size: 0.85rem; color: var(--text-secondary);
+    }
+    .hero-badge-status { color: var(--accent-emerald); font-weight: 700; }
+    .hero-title {
+      font-family: var(--font-display); font-size: clamp(2.3rem, 4.5vw, 3.8rem); font-weight: 800;
+      line-height: 1.12; letter-spacing: -0.03em; margin-bottom: 1.25rem;
+    }
+    .hero-lead { font-size: 1.12rem; color: var(--text-secondary); margin-bottom: 2.25rem; max-width: 600px; }
+    .hero-ctas { display: flex; gap: 1rem; flex-wrap: wrap; }
+
+    /* Hero Image Wrapper */
+    .hero-image-wrapper {
+      position: relative; border-radius: 24px; overflow: hidden;
+      border: 1px solid var(--border-highlight); box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+    }
+    .hero-img { width: 100%; height: 420px; object-fit: cover; display: block; }
+    .hero-img-badge {
+      position: absolute; bottom: 1.25rem; left: 1.25rem; right: 1.25rem;
+      background: rgba(7, 10, 18, 0.88); backdrop-filter: blur(16px);
+      border: 1px solid var(--border-subtle); border-radius: 16px; padding: 1rem;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+
+    /* Section Headers */
+    .section-title { text-align: center; margin: 5rem 0 2.5rem; }
+    .section-title h2 { font-family: var(--font-display); font-size: clamp(1.8rem, 3vw, 2.3rem); font-weight: 700; }
+    .section-title p { color: var(--text-secondary); font-size: 0.95rem; margin-top: 0.4rem; max-width: 620px; margin-left: auto; margin-right: auto; }
+
+    /* Feature Bento Grid */
+    .grid-4 { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.5rem; }
+
+    .card {
+      background: var(--bg-surface-1); backdrop-filter: blur(16px);
+      border: 1px solid var(--border-subtle); border-radius: 20px; padding: 1.75rem;
+      transition: transform 0.25s var(--ease-spring), border-color 0.2s;
+    }
+    
+    @media (hover: hover) and (pointer: fine) {
+      .card:hover { transform: translateY(-4px); border-color: var(--border-highlight); }
+    }
+
+    .card-icon {
+      width: 48px; height: 48px; border-radius: 12px;
+      background: rgba(6, 182, 212, 0.15); color: var(--accent-cyan);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.4rem; margin-bottom: 1.25rem;
+    }
+
+    /* Services Grid with 3D Tilt */
+    .tilt-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.75rem; perspective: 1000px; }
+    
+    .tilt-card {
+      background: var(--bg-surface-1); backdrop-filter: blur(16px);
+      border: 1px solid var(--border-subtle); border-radius: 24px; padding: 1.75rem;
+      position: relative; overflow: hidden; transform-style: preserve-3d;
+      transition: transform 0.15s var(--ease-spring), border-color 0.2s;
+    }
+
+    .tilt-glare {
+      position: absolute; inset: 0; pointer-events: none; opacity: 0;
+      background: radial-gradient(circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(255,255,255,0.15) 0%, transparent 60%);
+      transition: opacity 0.3s ease;
+    }
+    
+    @media (hover: hover) and (pointer: fine) {
+      .tilt-card:hover { border-color: var(--border-highlight); }
+      .tilt-card:hover .tilt-glare { opacity: 1; }
+    }
+
+    .card-photo {
+      width: 100%; height: 190px; object-fit: cover; border-radius: 14px; margin-bottom: 1.25rem;
+      border: 1px solid var(--border-subtle); display: block;
+    }
+
+    /* Process Flow Timeline */
+    .process-timeline {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.5rem;
+      position: relative;
+    }
+    .process-step {
+      background: var(--bg-surface-1); border: 1px solid var(--border-subtle);
+      border-radius: 20px; padding: 1.75rem; position: relative;
+    }
+    .step-number {
+      font-family: var(--font-mono); font-size: 0.8rem; font-weight: 700; color: var(--accent-cyan);
+      background: rgba(6, 182, 212, 0.12); padding: 0.25rem 0.6rem; border-radius: 8px;
+      display: inline-block; margin-bottom: 1rem;
+    }
+
+    /* Smile Simulator Section */
+    .visualizer-box {
+      background: rgba(0, 0, 0, 0.45); border: 1px solid var(--border-subtle); border-radius: 20px;
+      padding: 2.25rem; text-align: center; margin-top: 1rem; cursor: pointer;
+      transition: border-color 0.2s;
+    }
+    .visualizer-box:hover { border-color: var(--border-highlight); }
+    .smile-preview {
+      font-size: 3.8rem; margin: 1rem 0; transition: transform 0.3s var(--ease-spring); display: inline-block;
+    }
+
+    /* Team Grid */
+    .team-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.75rem; }
+    .team-card { text-align: center; }
+    .team-photo {
+      width: 120px; height: 120px; border-radius: 50%; object-fit: cover;
+      margin: 0 auto 1.25rem; border: 2px solid var(--border-highlight); display: block;
+    }
+
+    /* Accordion FAQ */
+    .faq-container { max-width: 820px; margin: 0 auto; display: flex; flex-direction: column; gap: 1rem; }
+    .faq-item {
+      background: var(--bg-surface-1); border: 1px solid var(--border-subtle); border-radius: 16px;
+      padding: 1.25rem 1.5rem; cursor: pointer; transition: border-color 0.2s;
+    }
+    .faq-item:hover { border-color: var(--border-highlight); }
+    .faq-question { display: flex; justify-content: space-between; align-items: center; font-weight: 600; font-size: 1rem; }
+    .faq-answer { display: none; color: var(--text-secondary); font-size: 0.92rem; margin-top: 0.85rem; line-height: 1.6; }
+    .faq-item.active .faq-answer { display: block; }
+    .faq-item.active .faq-icon { transform: rotate(45deg); }
+    .faq-icon { transition: transform 0.2s; color: var(--accent-cyan); font-weight: 700; font-size: 1.2rem; }
+
+    /* Booking Form Card */
+    .booking-card {
+      max-width: 620px; margin: 0 auto 4rem; background: var(--bg-surface-1); border: 1px solid var(--border-highlight);
+      border-radius: 24px; padding: 2.5rem; box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+    }
+    .form-group { margin-bottom: 1.25rem; text-align: left; }
+    .form-group label { display: block; font-size: 0.85rem; font-weight: 600; margin-bottom: 0.4rem; color: var(--text-secondary); }
+    .form-input {
+      width: 100%; padding: 0.85rem 1rem; border-radius: 12px; background: rgba(0,0,0,0.4);
+      border: 1px solid var(--border-subtle); color: white; font-size: 0.95rem; font-family: var(--font-body);
+      transition: border-color 0.2s;
+    }
+    .form-input:focus { outline: none; border-color: var(--accent-cyan); }
+
+    /* Showcase "Creado con NT-SKILL SUPREME" Banner */
+    .showcase-banner {
+      background: linear-gradient(135deg, rgba(15, 23, 42, 0.9), rgba(9, 13, 22, 0.95));
+      border: 1px solid rgba(139, 92, 246, 0.4); border-radius: 28px; padding: 3rem 2rem;
+      text-align: center; margin: 6rem 0 4rem; box-shadow: 0 20px 50px rgba(139, 92, 246, 0.15);
+      position: relative; overflow: hidden;
+    }
+    .showcase-badge {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      padding: 0.35rem 0.9rem; background: rgba(139, 92, 246, 0.15); border: 1px solid rgba(139, 92, 246, 0.4);
+      border-radius: 999px; font-family: var(--font-mono); font-size: 0.75rem; color: #c4b5fd; margin-bottom: 1.25rem;
+    }
+    .prompt-code-block {
+      background: #04060b; border: 1px solid var(--border-subtle); border-radius: 14px;
+      padding: 1.25rem; max-width: 600px; margin: 1.5rem auto; text-align: left;
+      font-family: var(--font-mono); font-size: 0.9rem; color: #38bdf8;
+    }
+
+    /* Floating WhatsApp Button */
+    .whatsapp-float {
+      position: fixed; bottom: 2rem; right: 2rem; z-index: 99;
+      width: 60px; height: 60px; border-radius: 50%; background: #25d366;
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 10px 25px rgba(37, 211, 102, 0.4); text-decoration: none;
+      transition: transform 0.2s var(--ease-spring);
+    }
+    @media (hover: hover) and (pointer: fine) {
+      .whatsapp-float:hover { transform: scale(1.1); }
+    }
+    .whatsapp-float:active { transform: scale(0.95); }
+
+    /* Footer */
+    footer {
+      border-top: 1px solid var(--border-subtle); padding: 3rem 0 2rem;
+      color: var(--text-secondary); font-size: 0.9rem; margin-top: 4rem;
+    }
+    .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 2rem; margin-bottom: 2rem; }
+    .footer-bottom {
+      display: flex; align-items: center; justify-content: space-between;
+      border-top: 1px solid var(--border-subtle); padding-top: 1.5rem; flex-wrap: wrap; gap: 1rem;
+    }
+
+    /* Discrete Skill Badge */
+    .built-with-badge {
+      display: inline-flex; align-items: center; gap: 0.4rem;
+      font-family: var(--font-mono); font-size: 0.75rem; color: var(--text-muted);
+      text-decoration: none; transition: color 0.2s;
+    }
+    .built-with-badge:hover { color: var(--accent-cyan); }
+
+    /* Reduced Motion Accessibility Safeguard */
+    @media (prefers-reduced-motion: reduce) {
+      *, ::before, ::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+      }
+      .scroll-progress-bar { display: none; }
+    }
+
+    /* Responsive Breakpoint Layout Adjustments (360px, 390px, 768px, 1024px, 1440px) */
+    @media (max-width: 900px) {
+      .hero-grid { grid-template-columns: 1fr; text-align: center; }
+      .hero-lead { margin-left: auto; margin-right: auto; }
+      .hero-ctas { justify-content: center; }
+      .desktop-only { display: none !important; }
+      .hamburger-btn { display: flex; }
+      .footer-grid { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 480px) {
+      .app-container { padding: 0 1rem; }
+      .booking-card { padding: 1.5rem; }
+      .hero-ctas .btn { width: 100%; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Scroll Progress Bar -->
+  <div class="scroll-progress-bar" aria-hidden="true"></div>
+
+  <!-- Ambient Lighting Glows -->
+  <div class="glow-spotlight spot-1" aria-hidden="true"></div>
+  <div class="glow-spotlight spot-2" aria-hidden="true"></div>
+
+  <!-- 1. Sticky Navbar -->
+  <header class="navbar">
+    <div class="app-container nav-inner">
+      <a href="#" class="brand-logo" aria-label="DentalCare Pro Inicio">
+        <div class="brand-icon">🦷</div>
+        <span>DentalCare Pro</span>
+      </a>
+      <nav class="nav-links desktop-only" aria-label="Navegación principal">
+        <a href="#beneficios">Beneficios</a>
+        <a href="#tratamientos">Tratamientos</a>
+        <a href="#proceso">Proceso</a>
+        <a href="#equipo">Especialistas</a>
+        <a href="#faq">Preguntas</a>
+        <a href="#reserva" class="btn btn-primary">Reservar Cita</a>
+      </nav>
+      <button class="hamburger-btn" onclick="toggleDrawer()" aria-label="Abrir Menú de Navegación">☰</button>
+    </div>
+  </header>
+
+  <!-- Mobile Drawer & Overlay -->
+  <div class="drawer-overlay" id="drawerOverlay" onclick="toggleDrawer()"></div>
+  <aside class="mobile-drawer" id="drawer" role="dialog" aria-modal="true" aria-label="Menú Móvil">
+    <button class="close-drawer" onclick="toggleDrawer()" aria-label="Cerrar Menú">&times;</button>
+    <a href="#beneficios" onclick="toggleDrawer()" style="color:white; text-decoration:none; font-size:1.1rem;">Beneficios</a>
+    <a href="#tratamientos" onclick="toggleDrawer()" style="color:white; text-decoration:none; font-size:1.1rem;">Tratamientos</a>
+    <a href="#proceso" onclick="toggleDrawer()" style="color:white; text-decoration:none; font-size:1.1rem;">Proceso</a>
+    <a href="#equipo" onclick="toggleDrawer()" style="color:white; text-decoration:none; font-size:1.1rem;">Especialistas</a>
+    <a href="#faq" onclick="toggleDrawer()" style="color:white; text-decoration:none; font-size:1.1rem;">Preguntas Frecuentes</a>
+    <a href="#reserva" class="btn btn-primary" onclick="toggleDrawer()" style="text-align:center; width:100%;">Reservar Cita</a>
+  </aside>
+
+  <main class="app-container">
+
+    <!-- 2. Hero Section (3-Second Value Rule) -->
+    <section class="hero-grid" aria-label="Presentación Principal">
+      <div>
+        <div class="hero-badge">
+          <span class="hero-badge-status">● Citas Disponibles Hoy</span>
+          <span>[Demo Placeholder]</span>
+        </div>
+        <h1 class="hero-title">Recupera Tu Sonrisa Con Precisión Digital 3D.</h1>
+        <p class="hero-lead">
+          Tratamientos estéticos sin dolor, ortodoncia invisible e implantes de alta tecnología. Planificación computarizada desde tu primera consulta.
+        </p>
+        <div class="hero-ctas">
+          <!-- Visually Dominant Primary CTA -->
+          <a href="#reserva" class="btn btn-primary">📅 Reservar Evaluación Gratuita</a>
+          <!-- Lower Hierarchy Secondary CTA -->
+          <a href="#tratamientos" class="btn btn-secondary">Ver Tratamientos &rarr;</a>
+        </div>
+      </div>
+
+      <!-- Hero Photography Asset -->
+      <div class="hero-image-wrapper">
+        <img src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?w=800&auto=format&fit=crop" 
+             alt="Consultorio dental equipado con tecnología intraoral 3D" 
+             class="hero-img"
+             width="800"
+             height="420"
+             loading="eager">
+        <div class="hero-img-badge">
+          <div>
+            <div style="font-weight: 700; font-size: 0.9rem;">Escáner Intraoral 3D</div>
+            <div style="font-size: 0.75rem; color: var(--text-secondary);">Sin moldes de pasta incómodos</div>
+          </div>
+          <span style="color: var(--accent-emerald); font-weight: 700; font-size: 0.85rem;">Diagnóstico 3D</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. Core Benefits Grid -->
+    <section id="beneficios" aria-label="Beneficios Principales">
+      <div class="section-title">
+        <h2>Atención Odontológica de Próxima Generación</h2>
+        <p>Experiencia clínica diseñada para eliminar la ansiedad dental y garantizar máxima precisión.</p>
+      </div>
+      <div class="grid-4">
+        <div class="card">
+          <div class="card-icon">⚡</div>
+          <h3>Procedimientos Sin Dolor</h3>
+          <p style="color: var(--text-secondary); font-size: 0.9rem; margin-top: 0.4rem;">Tecnología de anestesia computarizada indolora para tratamientos rápidos y confortables.</p>
+        </div>
+        <div class="card">
+          <div class="card-icon">📐</div>
+          <h3>Escaneo 3D Digital</h3>
+          <p style="color: var(--text-secondary); font-size: 0.9rem; margin-top: 0.4rem;">Modelado intraoral de alta definición en tiempo real sin moldes tradicionales de impresión.</p>
+        </div>
+        <div class="card">
+          <div class="card-icon">💳</div>
+          <h3>Financiamiento Flexible</h3>
+          <p style="color: var(--text-secondary); font-size: 0.9rem; margin-top: 0.4rem;">Cuotas mensuales accesibles con aprobación inmediata [Demo Placeholder].</p>
+        </div>
+        <div class="card">
+          <div class="card-icon">🛡️</div>
+          <h3>Garantía en Tratamientos</h3>
+          <p style="color: var(--text-secondary); font-size: 0.9rem; margin-top: 0.4rem;">Certificación de materiales grado médico de alta resistencia y durabilidad.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. Dental Services Grid (3D Tilt) -->
+    <section id="tratamientos" aria-label="Tratamientos Especializados">
+      <div class="section-title">
+        <h2>Tratamientos Especializados</h2>
+        <p>Pasa el cursor sobre las tarjetas para experimentar la inclinación 3D en tiempo real (dispositivos compatibles)</p>
+      </div>
+
+      <div class="tilt-grid">
+        <article class="tilt-card" onmousemove="handleTilt(event, this)" onmouseleave="resetTilt(this)">
+          <div class="tilt-glare"></div>
+          <img src="https://images.unsplash.com/photo-1606811841689-23dfddce3e95?w=500&auto=format&fit=crop" alt="Diseño de sonrisa estético" class="card-photo" width="500" height="190" loading="lazy">
+          <h3 style="font-family: var(--font-display); font-size: 1.25rem; margin-bottom: 0.4rem;">Diseño de Sonrisa 3D</h3>
+          <p style="color: var(--text-secondary); font-size: 0.9rem;">
+            Planificación virtual personalizada con carillas ultradelgadas que restauran forma y estética.
+          </p>
+        </article>
+
+        <article class="tilt-card" onmousemove="handleTilt(event, this)" onmouseleave="resetTilt(this)">
+          <div class="tilt-glare"></div>
+          <img src="https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?w=500&auto=format&fit=crop" alt="Alineadores invisibles" class="card-photo" width="500" height="190" loading="lazy">
+          <h3 style="font-family: var(--font-display); font-size: 1.25rem; margin-bottom: 0.4rem;">Ortodoncia Invisible</h3>
+          <p style="color: var(--text-secondary); font-size: 0.9rem;">
+            Alineadores transparentes removibles e imperceptibles diseñados por ordenador.
+          </p>
+        </article>
+
+        <article class="tilt-card" onmousemove="handleTilt(event, this)" onmouseleave="resetTilt(this)">
+          <div class="tilt-glare"></div>
+          <img src="https://images.unsplash.com/photo-1609840114035-3c981b782dfe?w=500&auto=format&fit=crop" alt="Implantes dentales guiados" class="card-photo" width="500" height="190" loading="lazy">
+          <h3 style="font-family: var(--font-display); font-size: 1.25rem; margin-bottom: 0.4rem;">Implantes Guiados 3D</h3>
+          <p style="color: var(--text-secondary); font-size: 0.9rem;">
+            Cirugía guiada por escáner computarizado para colocar piezas dentales fijas en tiempo récord.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <!-- 5. Step-by-Step Treatment Process -->
+    <section id="proceso" aria-label="Proceso de Atención">
+      <div class="section-title">
+        <h2>Tu Camino a Una Nueva Sonrisa</h2>
+        <p>Un proceso estructurado de 4 pasos para garantizar comodidad y previsibilidad total.</p>
+      </div>
+      <div class="process-timeline">
+        <div class="process-step">
+          <span class="step-number">PASO 01</span>
+          <h3>Escaneo & Diagnóstico 3D</h3>
+          <p style="color: var(--text-secondary); font-size: 0.88rem; margin-top: 0.4rem;">Evaluación clínica inicial sin costo y escáner intraoral 3D inmediato.</p>
+        </div>
+        <div class="process-step">
+          <span class="step-number">PASO 02</span>
+          <h3>Planificación Digital</h3>
+          <p style="color: var(--text-secondary); font-size: 0.88rem; margin-top: 0.4rem;">Visualizas el resultado final proyectado en pantalla antes de comenzar.</p>
+        </div>
+        <div class="process-step">
+          <span class="step-number">PASO 03</span>
+          <h3>Tratamiento Indoloro</h3>
+          <p style="color: var(--text-secondary); font-size: 0.88rem; margin-top: 0.4rem;">Ejecución de precisión guiada por tecnología clínica de última generación.</p>
+        </div>
+        <div class="process-step">
+          <span class="step-number">PASO 04</span>
+          <h3>Control & Mantenimiento</h3>
+          <p style="color: var(--text-secondary); font-size: 0.88rem; margin-top: 0.4rem;">Seguimiento personalizado para asegurar la durabilidad de tu sonrisa.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6. Smile Simulator Feature -->
+    <section aria-label="Simulador de Cambio Estético">
+      <div class="section-title">
+        <h2>Simulador de Cambio Estético</h2>
+        <p>Haz clic en la tarjeta para alternar entre el estado inicial y el resultado proyectado</p>
+      </div>
+      <div class="card" style="max-width: 580px; margin: 0 auto; text-align: center;">
+        <div class="visualizer-box" onclick="toggleSmile()" role="button" tabindex="0" aria-label="Simular cambio de sonrisa">
+          <div class="smile-preview" id="smileIcon">😬</div>
+          <div id="smileStatus" style="font-family: var(--font-mono); font-size: 0.85rem; color: var(--accent-amber);">Estado: Evaluación Inicial</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 7. Team Section (Professional Content) -->
+    <section id="equipo" aria-label="Equipo de Especialistas">
+      <div class="section-title">
+        <h2>Especialistas Médicos</h2>
+        <p>Equipo profesional con formación clínica especializada [Contenido Demostrativo]</p>
+      </div>
+      <div class="team-grid">
+        <div class="card team-card">
+          <img src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=300&auto=format&fit=crop" alt="Dra. Elena Ramos - Especialista en Implantología" class="team-photo" width="120" height="120" loading="lazy">
+          <h3>Dra. Elena Ramos</h3>
+          <p style="color: var(--accent-cyan); font-size: 0.85rem; font-weight: 600; margin-bottom: 0.5rem;">Especialista en Implantología 3D</p>
+          <p style="color: var(--text-secondary); font-size: 0.85rem;">Especialización en Rehabilitación Oral y Cirugía Guiada por Ordenador.</p>
+        </div>
+        <div class="card team-card">
+          <img src="https://images.unsplash.com/photo-1622253692010-333f2da6031d?w=300&auto=format&fit=crop" alt="Dr. Matías Silva - Ortodoncia Estética" class="team-photo" width="120" height="120" loading="lazy">
+          <h3>Dr. Matías Silva</h3>
+          <p style="color: var(--accent-cyan); font-size: 0.85rem; font-weight: 600; margin-bottom: 0.5rem;">Ortodoncia & Alineadores</p>
+          <p style="color: var(--text-secondary); font-size: 0.85rem;">Certificación internacional en sistemas de ortodoncia transparente e invisible.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 8. FAQ Accordion -->
+    <section id="faq" aria-label="Preguntas Frecuentes">
+      <div class="section-title">
+        <h2>Preguntas Frecuentes</h2>
+        <p>Respuestas claras a las dudas más habituales sobre la consulta inicial.</p>
+      </div>
+      <div class="faq-container">
+        <div class="faq-item" onclick="toggleFaq(this)" role="button" tabindex="0" aria-expanded="false">
+          <div class="faq-question">
+            <span>¿En qué consiste la primera consulta de evaluación gratuita?</span>
+            <span class="faq-icon">+</span>
+          </div>
+          <div class="faq-answer">
+            Incluye el escaneo intraoral 3D, revisión clínica por un especialista y la proyección en pantalla de tu plan de tratamiento sin compromiso.
+          </div>
+        </div>
+        <div class="faq-item" onclick="toggleFaq(this)" role="button" tabindex="0" aria-expanded="false">
+          <div class="faq-question">
+            <span>¿Los alineadores invisibles son aptos para cualquier caso?</span>
+            <span class="faq-icon">+</span>
+          </div>
+          <div class="faq-answer">
+            La mayoría de las maloclusiones se pueden corregir con alineadores. En la primera sesión se evalúa la complejidad con el escáner 3D.
+          </div>
+        </div>
+        <div class="faq-item" onclick="toggleFaq(this)" role="button" tabindex="0" aria-expanded="false">
+          <div class="faq-question">
+            <span>¿Ofrecen atención de urgencias dentales el mismo día?</span>
+            <span class="faq-icon">+</span>
+          </div>
+          <div class="faq-answer">
+            Sí, reservamos turnos prioritarios diarios para atender dolor agudo o molestias imprevistas.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 9. Streamlined Booking Contact Form -->
+    <section id="reserva" style="margin-top: 5rem;" aria-label="Formulario de Reserva">
+      <div class="booking-card">
+        <h2 style="font-family: var(--font-display); font-size: 1.6rem; margin-bottom: 0.4rem; text-align: center;">Reservar Evaluación Gratuita</h2>
+        <p style="color: var(--text-secondary); font-size: 0.85rem; text-align: center; margin-bottom: 1.75rem;">Ingresa tus datos de contacto para coordinar la hora de tu consulta.</p>
+        <form onsubmit="handleBooking(event)">
+          <div class="form-group">
+            <label for="name">Nombre Completo</label>
+            <input type="text" id="name" class="form-input" placeholder="Ej: Carlos Mendoza" required>
+          </div>
+          <div class="form-group">
+            <label for="phone">Teléfono / WhatsApp</label>
+            <input type="tel" id="phone" class="form-input" placeholder="Ej: +54 9 11 2345 6789" required>
+          </div>
+          <div class="form-group">
+            <label for="treatment">Tratamiento de Interés</label>
+            <select id="treatment" class="form-input" style="color: white;">
+              <option value="diseno">Diseño de Sonrisa 3D</option>
+              <option value="ortodoncia">Ortodoncia Invisible</option>
+              <option value="implantes">Implantes Guiados 3D</option>
+              <option value="general">Revisión General / Limpieza</option>
+            </select>
+          </div>
+          <button type="submit" class="btn btn-primary" style="width: 100%; justify-content: center; padding: 0.9rem;">Confirmar Reserva 🚀</button>
+        </form>
+      </div>
+    </section>
+
+    <!-- 12. SHOWCASE SECTION: Creada con NT-SKILL SUPREME -->
+    <section class="showcase-banner" aria-label="Sección Showcase NT-SKILL SUPREME">
+      <div class="showcase-badge">✨ SHOWCASE OFICIAL DE DISEÑO POR IA</div>
+      <h2 style="font-family: var(--font-display); font-size: clamp(1.8rem, 3.5vw, 2.6rem); font-weight: 800; margin-bottom: 0.8rem;">
+        De un prompt corto a una experiencia web premium.
+      </h2>
+      <p style="color: var(--text-secondary); max-width: 700px; margin: 0 auto 1.5rem; font-size: 0.98rem; line-height: 1.6;">
+        Esta demo fue generada utilizando <strong>Gemini Antigravity</strong> en combinación con <strong>NT-SKILL SUPREME</strong>.
+        La primera versión funcional de este sitio fue creada en aproximadamente un minuto a partir del prompt corto mostrado a continuación, y posteriormente pulida para su presentación como showcase oficial.
+      </p>
+
+      <div class="prompt-code-block">
+        <span style="color: #64748b; display: block; font-size: 0.75rem; margin-bottom: 0.3rem;">// Prompt corto utilizado en Gemini Antigravity</span>
+        <code>"Crea una landing moderna para una clínica dental."</code>
+      </div>
+
+      <div style="margin-top: 2rem;">
+        <a href="https://github.com/NachoTorresRD/nt-skill-supreme" target="_blank" class="btn btn-primary" style="padding: 0.85rem 1.8rem;">
+          🚀 Usar NT-SKILL SUPREME en GitHub
+        </a>
+      </div>
+      <p style="font-size: 0.75rem; color: var(--text-muted); margin-top: 1rem;">
+        *El tiempo de generación corresponde a esta prueba específica en entorno de desarrollo.
+      </p>
+    </section>
+
+  </main>
+
+  <!-- 10. Floating WhatsApp Contact Button -->
+  <a href="https://wa.me/YOUR_PHONE_NUMBER?text=Hola!%20Deseo%20informacion" target="_blank" class="whatsapp-float" aria-label="Contacto por WhatsApp">
+    <svg width="30" height="30" viewBox="0 0 24 24" fill="white">
+      <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-0.999 3.648 3.742-0.981z"/>
+    </svg>
+  </a>
+
+  <!-- 11. Footer -->
+  <footer>
+    <div class="app-container">
+      <div class="footer-grid">
+        <div>
+          <div class="brand-logo" style="margin-bottom: 0.8rem;">
+            <div class="brand-icon">🦷</div>
+            <span>DentalCare Pro</span>
+          </div>
+          <p style="color: var(--text-secondary); font-size: 0.85rem; max-width: 320px;">
+            Proyecto demostrativo oficial creado con NT-SKILL SUPREME. Nombres, imágenes y datos de contacto son totalmente ficticios.
+          </p>
+        </div>
+        <div>
+          <div style="font-weight: 700; color: white; margin-bottom: 0.8rem;">Tratamientos</div>
+          <p><a href="#tratamientos" style="color: var(--text-secondary); text-decoration: none;">Diseño 3D</a></p>
+          <p><a href="#tratamientos" style="color: var(--text-secondary); text-decoration: none;">Ortodoncia</a></p>
+          <p><a href="#tratamientos" style="color: var(--text-secondary); text-decoration: none;">Implantes</a></p>
+        </div>
+        <div>
+          <div style="font-weight: 700; color: white; margin-bottom: 0.8rem;">Showcase</div>
+          <p><a href="https://github.com/NachoTorresRD/nt-skill-supreme" target="_blank" style="color: var(--accent-cyan); text-decoration: none;">GitHub Skill Repo</a></p>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div>&copy; 2026 DentalCare Pro Showcase. Nombres y datos de contacto ficticios.</div>
+        <a href="https://github.com/NachoTorresRD/nt-skill-supreme" target="_blank" class="built-with-badge">
+          <span>⚡ Built with NT-SKILL SUPREME</span>
+        </a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Toggle Mobile Navigation Drawer
+    function toggleDrawer() {
+      const drawer = document.getElementById('drawer');
+      const overlay = document.getElementById('drawerOverlay');
+      const isOpen = drawer.classList.contains('open');
+      drawer.classList.toggle('open', !isOpen);
+      overlay.classList.toggle('open', !isOpen);
+    }
+
+    // Close drawer on Escape key
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        const drawer = document.getElementById('drawer');
+        if (drawer.classList.contains('open')) toggleDrawer();
+      }
+    });
+
+    // 3D Perspective Tilt on Mouse Movement
+    function handleTilt(e, card) {
+      if (!window.matchMedia('(hover: hover) and (pointer: fine)').matches) return;
+      const rect = card.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      const rotateX = ((y - rect.height / 2) / (rect.height / 2)) * -10;
+      const rotateY = ((x - rect.width / 2) / (rect.width / 2)) * 10;
+
+      card.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`;
+      card.style.setProperty('--mouse-x', `${(x / rect.width) * 100}%`);
+      card.style.setProperty('--mouse-y', `${(y / rect.height) * 100}%`);
+    }
+
+    function resetTilt(card) {
+      card.style.transform = 'rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)';
+    }
+
+    // Toggle FAQ Accordion
+    function toggleFaq(element) {
+      const isActive = element.classList.contains('active');
+      document.querySelectorAll('.faq-item').forEach(item => {
+        item.classList.remove('active');
+        item.setAttribute('aria-expanded', 'false');
+      });
+      if (!isActive) {
+        element.classList.add('active');
+        element.setAttribute('aria-expanded', 'true');
+      }
+    }
+
+    // Interactive Smile Simulator
+    let isSmileTransformed = false;
+    function toggleSmile() {
+      const smileIcon = document.getElementById('smileIcon');
+      const smileStatus = document.getElementById('smileStatus');
+      isSmileTransformed = !isSmileTransformed;
+      if (isSmileTransformed) {
+        smileIcon.innerHTML = '😁✨';
+        smileIcon.style.transform = 'scale(1.25)';
+        smileStatus.innerHTML = 'Estado: Resultado DentalCare Pro ✨';
+        smileStatus.style.color = 'var(--accent-cyan)';
+      } else {
+        smileIcon.innerHTML = '😬';
+        smileIcon.style.transform = 'scale(1)';
+        smileStatus.innerHTML = 'Estado: Evaluación Inicial';
+        smileStatus.style.color = 'var(--accent-amber)';
+      }
+    }
+
+    // Handle Form Submit
+    function handleBooking(e) {
+      e.preventDefault();
+      const name = document.getElementById('name').value;
+      alert(`[Demo Disclaimer] ¡Gracias ${name}! Esta es una reserva demostrativa. Tu solicitud ficticia fue procesada.`);
+    }
+  </script>
+</body>
+</html>
