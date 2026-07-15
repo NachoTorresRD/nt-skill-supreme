@@ -18,6 +18,10 @@
 </p>
 
 <p align="center">
+  <a href="./demo/index.html"><b>🌟 View Interactive Demo (DentalCare Pro)</b></a>
+</p>
+
+<p align="center">
   <img src="./assets/banner.png" alt="NT-SKILL SUPREME Design Intelligence" width="100%" style="border-radius: 16px;">
 </p>
 
