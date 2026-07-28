@@ -5,16 +5,16 @@
 </p>
 
 <p align="center">
-  <img src="https://img.shields.io/badge/RELEASE-v2.0.0-blue?style=flat-square" alt="Release">
-  <img src="https://img.shields.io/badge/REASONING_RULES-220+-purple?style=flat-square" alt="Reglas">
-  <img src="https://img.shields.io/badge/UI_STYLES-100+-emerald?style=flat-square" alt="Estilos">
-  <img src="https://img.shields.io/badge/CLI-v2.0.0-cyan?style=flat-square" alt="CLI">
+  <img src="https://img.shields.io/badge/RELEASE-v3.0.0-blue?style=flat-square" alt="Release">
+  <img src="https://img.shields.io/badge/REASONING_RULES-350+-purple?style=flat-square" alt="Reglas">
+  <img src="https://img.shields.io/badge/FULLSTACK-ENABLED-emerald?style=flat-square" alt="FullStack">
+  <img src="https://img.shields.io/badge/CLI-v3.0.0-cyan?style=flat-square" alt="CLI">
   <img src="https://img.shields.io/badge/TESTS-100%25_PASSING-brightgreen?style=flat-square" alt="Tests">
   <img src="https://img.shields.io/badge/LICENSE-MIT-green?style=flat-square" alt="Licencia">
 </p>
 
 <p align="center">
-  <b>El Framework Maestro para IAs que inyecta inteligencia de diseño contextual, micro-interacciones táctiles, físicas 3D, psicología CRO 2026 sin datos falsos y producción de webs comerciales en minutos.</b>
+  <b>El Framework Maestro para IAs que inyecta arquitectura de software full-stack, seguridad OWASP, type-safety, pruebas automatizadas, inteligencia de diseño contextual, físicas 3D y producción de aplicaciones y webs comerciales en minutos.</b>
 </p>
 
 <p align="center">
@@ -22,7 +22,7 @@
 </p>
 
 <p align="center">
-  <img src="./assets/banner.png" alt="NT-SKILL SUPREME Design Intelligence" width="100%" style="border-radius: 16px;">
+  <img src="./assets/banner.png" alt="NT-SKILL SUPREME Design & Engineering Intelligence" width="100%" style="border-radius: 16px;">
 </p>
 
 ---
@@ -73,17 +73,17 @@ Adapta la intensidad del diseño dinámicamente según el tipo de proyecto:
 
 ## 💥 La Diferencia Real: Antes vs Después
 
-¿Por qué una web generada con **NT-SKILL SUPREME** convierte y sorprende a los clientes a primera vista?
+¿Por qué las aplicaciones y webs generadas con **NT-SKILL SUPREME v3.0** convierten y funcionan sin errores?
 
-| Característica UX / UI | ❌ Sin Skill (Generación IA Estándar) | 🚀 Con NT-SKILL SUPREME |
+| Característica | ❌ Sin Skill (Generación IA Estándar) | 🚀 Con NT-SKILL SUPREME v3.0 |
 |---|---|---|
-| **Diseño y Paletas** | Azul genérico `#3b82f6` sobre fondo blanco plano ("AI Slop") | Paletas HSL adaptativas, desenfoque Glassmorphic `backdrop-blur-md` y resplandor ambiental |
-| **Físicas de Clic** | Botones e imágenes estáticas, sin respuesta táctil al presionar | Respuesta táctil instantánea `:active scale(0.96)` a 100ms |
-| **Hover y Mouse** | Tarjetas planas sin profundidad visual | Efecto **3D Card Hover Tilt** (solo para dispositivos con mouse) con reflejo especular |
-| **Animación de Scroll** | Cero o bibliotecas JS pesadas que causan lag | Transiciones fluidas en GPU nativas con CSS `animation-timeline: view()` |
-| **Psicología CRO** | Formularios largos y datos de marketing falsos | Regla de Valor en 3s, prueba social verificada, cero estadísticas inventadas |
-| **Imágenes y Fallbacks** | Cuadros vacíos o textos feos como `[Imagen Aquí]` | Fotos HD generadas por IA, assets del usuario o fallbacks elegantes de Unsplash/SVG |
-| **Respeto al Código** | Reescribe frameworks existentes sin permiso | Inspecciona y eleva la arquitectura existente (React, Vue, Tailwind, Shadcn) in-place |
+| **Arquitectura y Estado** | Mezcla estado de API en stores globales a ciegas | Separa estrictamente Server State (TanStack Query) y Client UI State |
+| **APIs y Type-Safety** | Tipos `any` sueltos y payloads sin validar | Validación Zod en rutas, handlers tipados y ORMs (Drizzle/Prisma) |
+| **Seguridad OWASP** | Vulnerable a SQLi, XSS y rutas no autenticadas | Defensas OWASP, sanitización con DOMPurify, headers CSP y cookies HttpOnly |
+| **Testing y Calidad** | Borra o ignora tests que fallan para simular éxito | Verificación Test-Driven obligatoria (Vitest / Playwright 100% pass) |
+| **Diseño y Paletas** | Fondo blanco plano y azul genérico `#3b82f6` ("AI Slop") | Paletas HSL adaptativas, desenfoque Glassmorphic y físicas táctiles |
+| **Hover y Cursor** | Tarjetas planas sin profundidad visual | Efecto **3D Card Hover Tilt** con media queries para mouse real |
+| **CRO y Datos Reales** | Formularios largos y datos de marketing falsos | Regla de Valor en 3s, prueba social real y cero estadísticas inventadas |
 
 ---
 
@@ -91,7 +91,11 @@ Adapta la intensidad del diseño dinámicamente según el tipo de proyecto:
 
 | Comando | Acción y Resultado |
 |---|---|
+| `/build-fullstack-app [nicho] [stack]` | **Motor Full-Stack**: Genera la arquitectura completa de una aplicación (Auth, DB schema, Zod API routes, Stripe, Admin UI). |
 | `/build-client-site [nicho] [--style minimal\|balanced\|supreme]` | **Motor para Agencias**: Genera una web comercial completa en 1 solo archivo HTML/CSS/JS (Odontología, Gimnasio, Abogados, Restaurantes, Agencias, SaaS). |
+| `/refactor-codebase` | Audita y reestructura el código existente aplicando principios SOLID, estándares de type-safety y arquitectura limpia. |
+| `/security-audit` | Analiza el código buscando vulnerabilidades OWASP Top 10, fallas de sanitización, falta de rate-limiting y fugas de llaves secretas. |
+| `/add-feature [tipo]` | Inyecta módulos full-stack (Autenticación Supabase/Auth0, Pagos Stripe, Panel Admin, Upload a S3/R2). |
 | `/add-section [tipo]` | Inyecta secciones de producción (Header Pegajoso, Hero con Prueba Social, Switch de Precios, Acordeón FAQ, Formulario de Lead, Botón de WhatsApp). |
 | `/rapid-localize` | Reemplaza placeholders con la marca, teléfono, WhatsApp y dirección del cliente en segundos. |
 | `/design-audit` | Audita la web para corregir contrastes, eliminar Slop de IA, verificar accesibilidad y asegurar estados interactivos. |
@@ -108,10 +112,16 @@ nt-skill-supreme/
 ├── tests/
 │   └── cli.test.js                   # Suite de Pruebas Automatizadas CLI (node --test)
 ├── SKILL.md                          # Definición Maestra de la Skill (Instrucciones de la IA)
-├── AGENTS.md                         # Reglas del Sistema para Cursor, Trae, Windsurf y Codex
+├── AGENTS.md                         # Reglas del Sistema para Cursor, Trae, Windsurf, OpenCode, Codex y Antigravity
 ├── AUDIT.md                          # Auditoría Completa y Evaluación de Arquitectura
-├── CHANGELOG.md                      # Historial de Cambios (Versión Semántica 2.0.0)
+├── CHANGELOG.md                      # Historial de Cambios (Versión Semántica 3.0.0)
 ├── references/                       # Manuales Técnicos de Referencia
+│   ├── state-and-data-fetching.md    # [v3.0] Estado Server vs Client, TanStack Query, Zustand, carga de 4 estados
+│   ├── api-and-db-contracts.md       # [v3.0] Validación Zod, estándares ORM Drizzle/Prisma, Postgres RLS
+│   ├── auth-and-multi-tenancy.md     # [v3.0] OAuth, Passkeys, cookies de sesión, middleware multi-tenant, RBAC
+│   ├── testing-and-qa.md             # [v3.0] Vitest, Playwright E2E, directiva de verificación IA, anti-regresión
+│   ├── security-and-hardening.md     # [v3.0] Defensas OWASP, sanitización, rate-limiting, headers CSP
+│   ├── fullstack-scaffolding.md      # [v3.0] Arquitectura de carpetas, webhooks de Stripe, upload Cloud storage
 │   ├── niche-blueprints.md           # Planos de estructura comercial por industria
 │   ├── component-blueprints.md       # Snippets de componentes listos para producción
 │   ├── cro-and-performance.md        # Psicología de conversión en 3s y velocidad web

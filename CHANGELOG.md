@@ -7,6 +7,21 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## [3.0.0] - 2026-07-28
+
+### Added
+- **Full-Stack Software Engineering Expansion**: Transformed `nt-skill-supreme` into a complete end-to-end Full-Stack Engineering Engine for AI code assistants.
+- **6 New Full-Stack Engineering Manuals**:
+  - `references/state-and-data-fetching.md`: Server vs Client state, TanStack Query, Zustand, and 4-state loading experience.
+  - `references/api-and-db-contracts.md`: Zod schema validation, Drizzle/Prisma ORM guidelines, and Postgres RLS.
+  - `references/auth-and-multi-tenancy.md`: OAuth, Passkeys, HttpOnly cookies, RBAC matrix, and tenant isolation middleware.
+  - `references/testing-and-qa.md`: Vitest, Playwright E2E, AI test verification directive, and anti-regression rules.
+  - `references/security-and-hardening.md`: OWASP Top 10 defenses, DOMPurify sanitization, rate-limiting, and CSP headers.
+  - `references/fullstack-scaffolding.md`: Full-stack app directory layout, Stripe subscription webhook handlers, and R2/S3 file upload patterns.
+- **4 Full-Stack Product Archetypes**: Added `fullstack-app`, `saas-micro`, `api-service`, and `admin-portal`.
+- **4 New Direct Commands**: Added `/build-fullstack-app`, `/refactor-codebase`, `/security-audit`, and `/add-feature`.
+- **Test-Driven AI Directive**: Mandatory rule instructing AI agents to run test suites (`npm test`, `vitest`, `playwright`) and verify zero failure exit code before declaring tasks complete.
+
 ## [2.0.0] - 2026-07-14
 
 ### Added

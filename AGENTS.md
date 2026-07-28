@@ -1,6 +1,6 @@
 # 👑 NT-SKILL SUPREME: Global Agent System Rules
 
-This document defines the mandatory design principles, code style rules, white-label directives, and rapid production guidelines for all AI models operating in Cursor, Codex, Trae, Windsurf, OpenCode, Gemini Antigravity, and Claude.
+This document defines the mandatory full-stack software architecture rules, design engineering principles, code style standards, white-label directives, testing verification rules, and rapid production guidelines for all AI models operating in Cursor, Codex, Trae, Windsurf, OpenCode, Gemini Antigravity, and Claude.
 
 ---
 
@@ -16,9 +16,22 @@ This document defines the mandatory design principles, code style rules, white-l
 
 ---
 
-### 🏗️ RESPECT EXISTING CODEBASES & ARCHITECTURES
+### 🏗️ RESPECT EXISTING CODEBASES & ZERO-REGRESSION RULE
 - Before modifying an existing project, inspect the existing framework (React, Vue, Next.js, Svelte, HTML), styling solution (Tailwind, CSS Modules, Styled Components), and UI component libraries (Shadcn, Radix, Chakra).
 - **Elevate existing codebases in-place.** Do NOT replace Tailwind with raw CSS or rewrite established component libraries without explicit user consent.
+- Always preserve existing API contracts, function signatures, and method parameters.
+
+---
+
+### 🧪 TEST-DRIVEN VERIFICATION & Anti-BUG DIRECTIVE
+- Run relevant unit or E2E tests before declaring any coding task complete (`npm test`, `vitest`, `playwright`).
+- Never resolve test failures by muting or deleting assertions—always trace and fix the underlying logic.
+
+---
+
+### 🔒 TYPE SAFETY & OWASP SECURITY HARDENING
+- Validate all incoming API request payloads at runtime using Zod or equivalent schemas.
+- Enforce OWASP security rules: parameterize DB queries (Drizzle/Prisma), sanitize user HTML inputs, enforce tenant isolation (RLS), set strict CSP headers, and store session tokens exclusively in `HttpOnly` cookies.
 
 ---
 
@@ -30,7 +43,8 @@ Apply the appropriate visual profile according to intent:
 - **`supreme`**: Advanced 3D perspective tilt, spotlight tracking, native scroll-driven animations, parallax depth.
 
 Contextual Boundaries:
-- **Dashboards**: Prioritize data density, crisp tables, side navigation, loading states. Disable 3D card tilt on forms/tables. Do NOT auto-inject WhatsApp buttons.
+- **Dashboards / Admin Portals**: Prioritize data density, crisp tables, side navigation, loading states. Disable 3D card tilt on forms/tables. Require permission guards.
+- **Full-Stack Apps & SaaS**: Enforce clean state layer separation (Server vs Client), Zod route validation, type-safe DB ORM access, and Stripe webhook idempotency.
 - **Local Business**: Include floating WhatsApp contact button (`wa.me/`), physical address, operating hours, and booking CTAs.
 - **Landing Pages**: Feature a 3-second value hero, single dominant primary CTA, adjacent social proof, and streamlined lead forms.
 

@@ -1,7 +1,7 @@
 {
   "name": "nt-skill-supreme",
-  "version": "2.0.0",
-  "description": "The master AI design engineering, UI/UX, aesthetic taste, zero-slop, micro-interactions, 3D tilt, CRO, and rapid agency production skill for AI agents (Gemini Antigravity, Claude, Cursor, Codex, Trae, Windsurf, OpenCode).",
+  "version": "3.0.0",
+  "description": "The master AI full-stack software engineering, design engineering, UI/UX, type-safety, testing, security, and rapid agency production skill for AI agents (Gemini Antigravity, Claude, Cursor, Codex, Trae, Windsurf, OpenCode).",
   "main": "SKILL.md",
   "bin": {
     "nt-skill-supreme": "./bin/cli.js"
@@ -13,6 +13,7 @@
   "keywords": [
     "nt-skill-supreme",
     "ai-skill",
+    "full-stack-engineering",
     "design-system",
     "ui-ux",
     "antigravity",
@@ -20,7 +21,9 @@
     "cursor-rules",
     "zero-slop",
     "agency-engine",
-    "cro"
+    "type-safety",
+    "testing",
+    "security-hardening"
   ],
   "author": "NachoTorresRD",
   "license": "MIT",
