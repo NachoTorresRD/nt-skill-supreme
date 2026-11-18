@@ -5,10 +5,10 @@ const path = require('path');
 const os = require('os');
 
 const PKG_PATH = path.join(__dirname, '..', 'package.json');
-let pkgVersion = '3.0.0';
+let pkgVersion = '4.0.0';
 try {
   const pkg = JSON.parse(fs.readFileSync(PKG_PATH, 'utf8'));
-  pkgVersion = pkg.version || '3.0.0';
+  pkgVersion = pkg.version || '4.0.0';
 } catch (e) {
   // Fallback version
 }

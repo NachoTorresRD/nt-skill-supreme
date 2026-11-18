@@ -1,6 +1,6 @@
 # State Management & Data Fetching Reference
 
-*Best practices for Server vs. Client state separation, TanStack Query / SWR patterns, Zustand state stores, and resilient loading UX.*
+*Best practices for Server vs. Client state separation, TanStack Query / SWR patterns, Zustand state stores, automatic store discovery, and resilient loading UX.*
 
 ---
 
@@ -14,6 +14,17 @@ Never mix server cache into global UI state. Categorize state strictly into four
 | **Client UI State** | Local modal visibility, active tab index, sidebar toggle | React `useState`, Zustand, Jotai | Storing form input values in global Redux stores. |
 | **URL State** | Search filters, pagination index, active modal query params | Next.js `useSearchParams`, React Router | Keeping filter states only in local state (breaks link sharing). |
 | **Form State** | Transient user inputs, field validation, dirty state | React Hook Form, Formik | Re-rendering parent page on every single keypress. |
+
+---
+
+## 🔍 Proactive Store & Hook Discovery Protocol
+
+Before writing a new state store or fetching hook, the AI agent MUST search the existing project:
+1. **Search for Existing Query Hooks**: Look in `src/hooks/`, `lib/api/`, or `server/queries/` for hooks like `useUsers`, `useCurrentOrganization`, `useCart`.
+2. **Search for Existing Stores**: Look in `stores/`, `lib/store/`, or `context/` for Zustand (`create()`), Redux slices, or React Context.
+3. **Bind Directly to Discovered Stores**:
+   - If `useCartStore` already exists with `{ items, addItem, removeItem }`, use it directly instead of creating local mock arrays.
+   - If an existing hook provides `{ data, isLoading, error, refetch }`, consume it directly.
 
 ---
 
@@ -35,8 +46,8 @@ const useUserProfile = (userId: string) => {
 };
 ```
 
-### 2. Optimistic UI Updates
-When executing mutations (e.g. liking a post, toggling a status), update the local cache optimistically and roll back cleanly on failure:
+### 2. Optimistic UI Updates with Rollback
+When executing mutations (e.g. liking a post, updating a status, deleting an item), update the local cache optimistically and roll back cleanly on failure:
 
 ```typescript
 const queryClient = useQueryClient();
@@ -44,17 +55,26 @@ const queryClient = useQueryClient();
 const mutation = useMutation({
   mutationFn: updateTaskStatus,
   onMutate: async (newTask) => {
+    // 1. Cancel outgoing queries to prevent overwriting optimistic update
     await queryClient.cancelQueries({ queryKey: ['tasks', newTask.id] });
+
+    // 2. Snapshot the previous value
     const previousTask = queryClient.getQueryData(['tasks', newTask.id]);
+
+    // 3. Optimistically update to the new value
     queryClient.setQueryData(['tasks', newTask.id], newTask);
+
+    // Return context object with snapshotted value
     return { previousTask };
   },
   onError: (err, newTask, context) => {
+    // 4. Roll back to previous value on failure
     if (context?.previousTask) {
       queryClient.setQueryData(['tasks', newTask.id], context.previousTask);
     }
   },
   onSettled: () => {
+    // 5. Always refetch in the background to ensure authoritative sync
     queryClient.invalidateQueries({ queryKey: ['tasks'] });
   },
 });

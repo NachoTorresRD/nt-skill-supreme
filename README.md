@@ -5,16 +5,16 @@
 </p>
 
 <p align="center">
-  <img src="https://img.shields.io/badge/RELEASE-v3.0.0-blue?style=flat-square" alt="Release">
-  <img src="https://img.shields.io/badge/REASONING_RULES-350+-purple?style=flat-square" alt="Rules">
-  <img src="https://img.shields.io/badge/FULLSTACK-ENABLED-emerald?style=flat-square" alt="FullStack">
-  <img src="https://img.shields.io/badge/CLI-v3.0.0-cyan?style=flat-square" alt="CLI">
+  <img src="https://img.shields.io/badge/RELEASE-v4.0.0-blue?style=flat-square" alt="Release">
+  <img src="https://img.shields.io/badge/ZERO_DEAD_UI-ENFORCED-emerald?style=flat-square" alt="Zero Dead UI">
+  <img src="https://img.shields.io/badge/SMART_INTENT-ENABLED-purple?style=flat-square" alt="Smart Intent Expansion">
+  <img src="https://img.shields.io/badge/CLI-v4.0.0-cyan?style=flat-square" alt="CLI">
   <img src="https://img.shields.io/badge/TESTS-100%25_PASSING-brightgreen?style=flat-square" alt="Tests">
   <img src="https://img.shields.io/badge/LICENSE-MIT-green?style=flat-square" alt="License">
 </p>
 
 <p align="center">
-  <b>The Master AI Skill Framework providing end-to-end full-stack software architecture, type-safety, automated testing directives, OWASP security hardening, micro-interactions, and rapid agency web & app production across all modern AI platforms.</b>
+  <b>The Master Next-Gen Agentic AI Engineering Framework enforcing Zero-Dead-UI (zero cosmetic buttons, 100% working operational logic), autonomous project data discovery, smart intent expansion (write less, ship complete features), type-safe full-stack architecture, OWASP security, and ultra-high craft design.</b>
 </p>
 
 <p align="center">
@@ -61,6 +61,23 @@ npx nt-skill-supreme init
 
 ---
 
+## 💥 The Real Transformation: Before vs After (v4.0)
+
+Why do applications and websites generated with **NT-SKILL SUPREME v4.0** dramatically outperform standard AI code generations?
+
+| Feature | ❌ Without Skill (Basic AI Era) | 🚀 With NT-SKILL SUPREME v4.0 |
+|---|---|---|
+| **Interactivity & Buttons** | Cosmetic buttons with no real action (`onClick={() => console.log()}` or `#`) | **Zero-Dead-UI**: Full 4-state lifecycle (`idle`, `pending`, `success`, `error`), double-click guard, spinners & real mutations |
+| **Project Data Integration** | Fabricates disconnected mock arrays with no backend linkage | **Autonomous Data Discovery**: Proactively discovers and binds existing ORM schemas (Prisma/Drizzle/Supabase), types, and stores |
+| **Developer Effort** | Demands paragraphs of prompting for every state, edge case, and validation | **Smart Intent Expansion**: 5-10 word prompts are expanded into complete vertical slices with validation, error boundaries, and full logic |
+| **Forms & Validation** | Submits into a void or lacks field validation | Real-time Zod validation, ARIA accessibility, submit spinners, and server response banners |
+| **Tables & Data Grids** | Static tables without filtering or actions | Living data tables with reactive search, column sorting, empty state recovery, and CSV export |
+| **Architecture & State** | Mixes API state in global stores blindly | Strictly separates Server State (TanStack Query) & Client UI State with optimistic rollback |
+| **Security & OWASP** | Vulnerable to SQLi, XSS, and unauthenticated routes | OWASP defenses, DOMPurify HTML sanitization, CSP headers, HttpOnly cookies |
+| **Testing & Quality** | Mutes or deletes failing tests to pretend success | Mandatory Test-Driven AI Verification (Vitest / Playwright 100% pass) |
+
+---
+
 ## 🎨 Contextual Visual Profiles
 
 Adapt design intensity dynamically to match project objectives:
@@ -68,22 +85,6 @@ Adapt design intensity dynamically to match project objectives:
 - **`minimal`**: Refined, editorial cleanliness, typography cadence, whitespace rhythm, subtle motion, zero neon/glow clutter. *(Ideal for luxury, legal, blogs, executive portfolios).*
 - **`balanced`** *(Default)*: Premium aesthetic, tactile micro-interactions, moderate depth, WCAG AA contrast, smooth spring physics. *(Ideal for SaaS, agency sites, clinics, local services).*
 - **`supreme`**: High visual impact, 3D perspective hover tilt, spotlight tracking, native scroll-driven animations, parallax depth. *(Ideal for product launches, web experiences, tech portfolios).*
-
----
-
-## 💥 The Real Transformation: Before vs After
-
-Why do applications and websites generated with **NT-SKILL SUPREME** convert and perform flawlessly?
-
-| Feature | ❌ Without Skill (Standard AI Generation) | 🚀 With NT-SKILL SUPREME v3.0 |
-|---|---|---|
-| **Architecture & State** | Mixes API state in global stores blindly | Strictly separates Server State (TanStack Query) & Client UI State |
-| **API & Type Safety** | Any/unknown loose types and unvalidated payloads | Zod input validation, type-safe route handlers, and Drizzle/Prisma ORMs |
-| **Security & OWASP** | Vulnerable to SQLi, XSS, and unauthenticated routes | OWASP defenses, DOMPurify HTML sanitization, CSP headers, HttpOnly cookies |
-| **Testing & Quality** | Mutes or deletes failing tests to pretend success | Mandatory Test-Driven AI Verification (Vitest / Playwright 100% pass) |
-| **Design & Aesthetics** | Plain white background, `#3b82f6` blue buttons ("AI Slop") | Adaptive HSL palettes, glassmorphic depth, and tactile spring physics |
-| **Hover & Cursor** | Flat static cards without depth | Dynamic **3D Card Hover Tilt** with fine pointer media query guards |
-| **CRO & Grounded Data** | Long forms and ungrounded fake reviews/stats | 3-Second value rule, near-CTA social proof, zero fake numbers |
 
 ---
 
@@ -95,55 +96,56 @@ Why do applications and websites generated with **NT-SKILL SUPREME** convert and
 | `/build-client-site [niche] [--style minimal\|balanced\|supreme]` | **Rapid Agency Engine**: Generates a complete, multi-section client site in a single HTML file (Dental, Gym, Law, Restaurant, Agency, SaaS). |
 | `/refactor-codebase` | Audits and restructures existing codebases following SOLID principles, type-safety standards, and clean architecture. |
 | `/security-audit` | Analyzes code for OWASP Top 10 vulnerabilities, input sanitization gaps, rate-limiting deficits, and secret exposures. |
-| `/add-feature [type]` | Injects full-stack feature modules (Auth Auth0/Supabase, Stripe Billing, User Admin Panel, S3/R2 Uploads). |
-| `/add-section [type]` | Injects a production-ready UI section (Sticky Header, Floating WhatsApp, Pricing Switch, Accordion FAQ, Lead Capture Form). |
+| `/add-feature [type]` | Injects full-stack feature modules with real functional wiring (Auth Auth0/Supabase, Stripe Billing, User Admin Panel, S3/R2 Uploads). |
+| `/add-section [type]` | Injects a production-ready UI section with working logic (Sticky Header, Floating WhatsApp, Pricing Switch, Accordion FAQ, Zod Lead Form). |
 | `/rapid-localize` | Replaces placeholders with client-specific brand name, phone number, WhatsApp link, and local address. |
-| `/design-audit` | Perform a visual hierarchy, accessibility, code hygiene, and slop scan of your current frontend components. |
-| `/polish-ui [--style minimal\|balanced\|supreme]` | Elevate existing components with smooth transitions, refined typography, and glassmorphic depth. |
+| `/design-audit` | Audits current frontend code for slop, contrast balance, spacing cadence, WCAG AA compliance, and interaction states. |
+| `/polish-ui [--style minimal\|balanced\|supreme]` | Elevates existing UI with smooth animations, elevated depth, modern font stacks, and glassmorphism appropriate to the selected profile. |
 
 ---
 
-## 📁 Repository Structure
+## 📁 Repository Directory Structure
 
 ```
 nt-skill-supreme/
 ├── assets/
-│   └── banner.png                    # Official Showcase Hero Banner Image
+│   └── banner.png                    # Official Showcase Banner Asset
 ├── tests/
-│   └── cli.test.js                   # Automated CLI Test Suite (node --test)
-├── SKILL.md                          # Primary skill definition (YAML frontmatter + system instructions)
-├── AGENTS.md                         # Rules for Cursor, Trae, Windsurf, OpenCode, Codex & Antigravity
-├── AUDIT.md                          # Comprehensive Audit & Architecture Assessment
-├── CHANGELOG.md                      # Version history (Semantic Versioning 3.0.0)
-├── references/                       # Master technical reference manuals
-│   ├── state-and-data-fetching.md    # [v3.0] Server vs Client state, TanStack Query, Zustand, loading states
-│   ├── api-and-db-contracts.md       # [v3.0] Zod input validation, Drizzle/Prisma ORM standards, Postgres RLS
-│   ├── auth-and-multi-tenancy.md     # [v3.0] OAuth, Passkeys, session cookies, multi-tenant middleware, RBAC
-│   ├── testing-and-qa.md             # [v3.0] Vitest, Playwright E2E, AI test verification, anti-regression
-│   ├── security-and-hardening.md     # [v3.0] OWASP defenses, input sanitization, rate-limiting, CSP headers
-│   ├── fullstack-scaffolding.md      # [v3.0] Directory layout, Stripe webhook handlers, Cloud storage uploads
-│   ├── niche-blueprints.md           # Commercial industry blueprints & conversion funnels
-│   ├── component-blueprints.md       # Drop-in UI code snippets (Navbar, Hero, FAQs, WhatsApp Float)
-│   ├── cro-and-performance.md        # 3-Second value rule, mobile ergonomics, Core Web Vitals
-│   ├── motion-and-physics.md         # Scroll-driven CSS animations, 3D tilt & spring physics
-│   ├── image-gen-and-fallbacks.md    # AI photo generation protocol & Unsplash/SVG fallbacks
-│   ├── taste-anti-slop.md            # Zero-slop & palette generation guide
-│   ├── ui-ux-wcag.md                 # UI/UX grids & WCAG accessibility rules
-│   └── craft-and-polish.md           # Visual QA & design audit manual
-├── bin/cli.js                        # Multi-AI universal installer CLI script
-└── .claude-plugin/plugin.json        # Claude Desktop & Claude Code plugin metadata
+│   └── cli.test.js                   # CLI Automated Test Suite (node --test)
+├── SKILL.md                          # Master AI Skill Definition (Agent Instructions)
+├── AGENTS.md                         # System Rules for Cursor, Trae, Windsurf, OpenCode, Codex & Antigravity
+├── AUDIT.md                          # Complete Repository Audit & Architecture Evolution
+├── CHANGELOG.md                      # Release History (Semantic Version 4.0.0)
+├── references/                       # Master Technical Reference Modules
+│   ├── functional-logic-and-wiring.md# [v4.0] Zero-Dead-UI, async mutations, project data discovery
+│   ├── component-blueprints.md       # [v4.0] Interactive blueprints (Async button, Zod form, Living Table, Cart)
+│   ├── state-and-data-fetching.md    # [v4.0] Store discovery, TanStack Query, Zustand, optimistic rollback
+│   ├── api-and-db-contracts.md       # [v4.0] Schema-to-UI Auto-Projection, Zod validation, Drizzle/Prisma, RLS
+│   ├── auth-and-multi-tenancy.md     # OAuth, Passkeys, session cookies, multi-tenant middleware, RBAC
+│   ├── testing-and-qa.md             # Vitest, Playwright E2E, AI test verification, anti-regression
+│   ├── security-and-hardening.md     # OWASP defenses, sanitization, rate-limiting, CSP headers
+│   ├── fullstack-scaffolding.md      # Directory layout, Stripe webhooks, Cloud storage uploads
+│   ├── niche-blueprints.md           # Industry-specific client website blueprints
+│   ├── cro-and-performance.md        # 3-Second value rule, mobile ergonomics, performance standards
+│   ├── motion-and-physics.md         # Scroll-driven CSS animations, 3D card tilt, spotlight tracking
+│   ├── image-gen-and-fallbacks.md    # Dynamic AI image generation & graceful fallback strategy
+│   ├── taste-anti-slop.md            # Aesthetic guidelines, anti-slop rules, tailored palettes
+│   ├── ui-ux-wcag.md                 # 8px spatial grid, layout rules, WCAG 2.1 AA checklist
+│   └── craft-and-polish.md           # Visual QA audit protocols, micro-typography (`tabular-nums`)
+├── bin/cli.js                        # Multi-AI safe installation CLI script
+└── .claude-plugin/plugin.json        # Claude Code & Desktop Plugin manifest
 ```
 
 ---
 
-## 🧪 Running Tests & Quality Verification
+## 🧪 Automated Testing
 
 Run the automated test suite locally:
 ```bash
 npm test
 ```
 
-Inspect help banner and options:
+Verify CLI linting & command surface:
 ```bash
 npm run lint
 ```

@@ -1,6 +1,6 @@
 # API & Database Contracts Reference
 
-*Type-safe API validation, schema integrity, Drizzle / Prisma database standards, and Row-Level Security (RLS).*
+*Type-safe API validation, schema integrity, Drizzle / Prisma database standards, Row-Level Security (RLS), and Schema-to-UI Auto-Projection.*
 
 ---
 
@@ -40,6 +40,22 @@ export async function POST(req: Request) {
   }
 }
 ```
+
+---
+
+## 🔄 Schema-to-UI Auto-Projection (Zero User Overhead)
+
+When generating UI for existing projects, the AI must automatically project database & Zod schemas directly into interface elements without asking the user for field definitions:
+
+### Projection Matrix:
+| Schema Type | UI Input / Element | Validation & Formatting |
+|---|---|---|
+| `z.string().email()` | `<input type="email">` | Email regex check, `@` autocomplete |
+| `z.string().min(n).max(m)` | `<input type="text">` or `<textarea>` | Live character counter, inline error |
+| `z.enum(['a', 'b', 'c'])` | `<select>` or Radio Group | Formatted capitalized option labels |
+| `z.number().positive()` | `<input type="number" step="any">` | Currency / quantity formatter (`tabular-nums`) |
+| `z.boolean()` | Modern Toggle Switch | Accessible `role="switch"`, `aria-checked` |
+| `timestamp` / `date` | Datepicker or relative time | Clean localized date formatting |
 
 ---
 

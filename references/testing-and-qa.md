@@ -19,7 +19,7 @@ Maintain balanced test coverage across the software stack:
 
 | Layer | Target Coverage | Recommended Engine | Speed |
 |---|---|---|---|
-| **Unit Tests** | 80%+ pure logic | `vitest` / Node `--test` | Instant (< 50ms per suite) |
+| **Unit Tests** | Cover important pure logic and edge cases; set targets per project | `vitest` / Node `--test` | Usually fast |
 | **Integration Tests** | Key API endpoints & Component hooks | `vitest` + `@testing-library/react` | Fast (< 1-2s per suite) |
 | **E2E Tests** | Core business purchase/auth flows | `playwright` | Moderate (10-30s per flow) |
 
@@ -28,9 +28,7 @@ Maintain balanced test coverage across the software stack:
 ## 🤖 AI Test Verification Directive
 
 > [!IMPORTANT]
-> **MANDATORY AI AGENT RULE**:
-> Never mark a coding task as complete until all relevant test commands have been executed and return a zero exit code (100% pass).
-> If a test fails during execution, inspect the exact failure traceback, fix the underlying code contract (NEVER delete or mute failing assertions), and re-run verification.
+> Run the narrowest relevant check available and report its result accurately. Do not claim an unrun check passed. If a failure is in the changed behavior, investigate and rerun after fixing it; report unrelated baseline failures without changing them as part of a focused task.
 
 ---
 
@@ -86,6 +84,6 @@ test.describe('Authentication & Dashboard Flow', () => {
 
 ## 📋 Anti-Regression Protocol
 
-1. **Bug Fix Protocol**: Whenever fixing a reported bug, write a failing unit/integration test reproducing the exact issue FIRST, confirm it fails, and then apply the minimal fix to pass the test.
+1. **Bug Fix Protocol**: Add a regression test when the behavior can be tested reliably and the test is proportionate to the change. For tiny or hard-to-isolate changes, use the narrowest practical validation and state the limitation.
 2. **Contract Preservation**: Modifying function signatures or props requires updating all callers across the workspace.
-3. **No Muted Warnings**: Suppressing linter rules or wrapping broken blocks in silent `try/catch` is strictly prohibited.
+3. **Diagnostics**: Do not suppress useful failures or catch errors silently. If a suppression is necessary, keep it narrow and explain why.

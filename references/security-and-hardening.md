@@ -1,19 +1,19 @@
 # Security & Hardening Reference
 
-*OWASP Top 10 defenses, input sanitization, CSRF/XSS protection, rate-limiting, and secrets management.*
+*Contextual security guidance for input handling, access control, rate-limiting, and deployment hardening. Treat examples as starting points, not drop-in production controls.*
 
 ---
 
 ## 🛡️ OWASP Security Matrix
 
-| Vulnerability | Mitigation Strategy | Mandatory Implementation Rule |
+| Risk | Common mitigation | Context to verify |
 |---|---|---|
 | **SQL Injection (SQLi)** | Parameterized Queries / ORM | Never concatenate raw strings into DB queries. Use Drizzle/Prisma parameters. |
 | **Cross-Site Scripting (XSS)** | Input Sanitization & React Escaping | Avoid `dangerouslySetInnerHTML` unless explicitly sanitized with DOMPurify. |
-| **Cross-Site Request Forgery (CSRF)** | Anti-CSRF Tokens & SameSite Cookies | Use `SameSite=Lax` or `Strict` on all auth session cookies. |
+| **Cross-Site Request Forgery (CSRF)** | Framework CSRF protections and appropriate cookie attributes | Verify the auth flow, cross-origin requirements, and framework behavior. |
 | **Broken Access Control** | Explicit Tenant & Role Middleware | Enforce authorization checks on server handlers, never rely on client UI hiding. |
-| **Sensitive Data Exposure** | Environment Variable Isolation | Keep `SECRET_KEY`, DB URLs, and API tokens in server `.env` (never expose via `NEXT_PUBLIC_`). |
-| **Rate-Limiting Deficit** | Redis / Memory Token Bucket | Apply rate limits on public POST API endpoints (`/api/login`, `/api/contact`, `/api/checkout`). |
+| **Sensitive Data Exposure** | Keep secrets server-side and out of logs | Follow deployment secret management; public environment prefixes are client-visible. |
+| **Rate-Limiting Deficit** | Per-route limits backed by an appropriate shared store | Choose limits and identity keys based on abuse risk, deployment topology, and trusted proxy configuration. |
 
 ---
 
@@ -21,9 +21,7 @@
 
 ```typescript
 import DOMPurify from 'isomorphic-dompurify';
-import { z } from 'zod';
-
-// Sanitize user HTML content before rendering or saving to DB
+// Use only when the product intentionally accepts rich HTML; prefer context-safe output handling.
 export function sanitizeHtmlContent(rawHtml: string): string {
   return DOMPurify.sanitize(rawHtml, {
     ALLOWED_TAGS: ['b', 'i', 'em', 'strong', 'a', 'p', 'br', 'ul', 'ol', 'li'],
@@ -34,41 +32,20 @@ export function sanitizeHtmlContent(rawHtml: string): string {
 
 ---
 
-## ⚡ Rate-Limiting Middleware Pattern (Upstash Redis / Memory)
+## Rate Limiting
 
-```typescript
-import { NextResponse } from 'next/server';
-import type { NextRequest } from 'next/server';
-
-const rateLimitMap = new Map<string, { count: number; resetTime: number }>();
-
-export function rateLimit(req: NextRequest, limit = 10, windowMs = 60000) {
-  const ip = req.ip || req.headers.get('x-forwarded-for') || '127.0.0.1';
-  const now = Date.now();
-  const record = rateLimitMap.get(ip);
-
-  if (!record || now > record.resetTime) {
-    rateLimitMap.set(ip, { count: 1, resetTime: now + windowMs });
-    return null; // OK
-  }
-
-  if (record.count >= limit) {
-    return new NextResponse(JSON.stringify({ error: 'Too many requests. Please try again later.' }), {
-      status: 429,
-      headers: { 'Content-Type': 'application/json', 'Retry-After': '60' },
-    });
-  }
-
-  record.count += 1;
-  return null;
-}
-```
+- Prefer the platform or framework's supported rate-limit integration and a shared store for multi-instance deployments.
+- An in-memory map is best-effort for a single process only: it resets on restart, is not shared across instances, and may grow without bounds.
+- Do not trust arbitrary `X-Forwarded-For` values. Derive client identity only through explicitly configured trusted proxies; consider authenticated account or API-key limits as well.
+- Choose limits per endpoint and threat model. Return a consistent `429` response and `Retry-After` where appropriate.
 
 ---
 
-## 🛡️ Mandatory Content Security Policy (CSP) Headers
+## Content Security Policy and Response Headers
 
-Configure strict response headers in application edge servers:
+The following common headers are not themselves a Content Security Policy. Configure CSP separately for the app's actual scripts, styles, images, fonts, media, and connections. Prefer nonces or hashes over broad `unsafe-inline` allowances where the framework supports them. Start with report-only mode, inspect violations, then enforce a tested policy.
+
+Add other response headers only when compatible with the deployment. Enable HSTS only when HTTPS is consistently available for the covered hosts; a restrictive `Permissions-Policy` can also break legitimate product features.
 
 ```typescript
 export const securityHeaders = [

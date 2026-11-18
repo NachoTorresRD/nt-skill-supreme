@@ -7,6 +7,25 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## [4.0.0] - 2026-09-20
+
+### Added
+- **Next-Gen Agentic Architecture**: Upgraded framework from passive guidelines to an active, autonomous engineering system designed for modern reasoning models (Gemini 2.5/3, Claude 3.5/3.7, GPT-4o, Cursor Agent, Windsurf Cascade, Trae, Antigravity).
+- **Zero-Dead-UI Mandate (Cero Código Muerto)**: Strict enforcement prohibiting dead buttons, empty handlers (`console.log`), and dummy anchors (`#`). Every clickable element must implement the complete 4-state lifecycle (`idle`, `pending`, `success`, `error`), double-click prevention (`disabled`), loading spinners, and real mutations.
+- **Autonomous Project Data Discovery**: Directs AI agents to proactively inspect existing ORM models (`prisma/schema.prisma`, `drizzle/schema.ts`, Supabase types), interfaces in `types/`, and query stores (`useQuery`, Zustand, Server Actions) before generating code, binding directly to real project entities without inventing disconnected mocks.
+- **Smart Intent Expansion ("Escribir Menos, Producir Más")**: Short user prompts (5-10 words) are automatically expanded by the AI into complete vertical slices, including validation schemas, async handlers, optimistic UI, accessible focus rings, and responsive layouts without tedious prompt micromanagement.
+- **New Master Engineering Manual**:
+  - `references/functional-logic-and-wiring.md`: Complete blueprint for end-to-end button mutations, optimistic updates with rollback, living data tables with real CSV export, reactive forms with Zod, and autonomous project data mining.
+- **Schema-to-UI Auto-Projection**: Added to `references/api-and-db-contracts.md` for automatically mapping database & Zod schemas directly into UI inputs, validation rules, and table columns.
+- **Proactive Store & Hook Discovery Protocol**: Added to `references/state-and-data-fetching.md` to automatically bind new components to existing Zustand stores or React Query hooks.
+
+### Changed
+- **Production-Grade Component Blueprints**: Overhauled `references/component-blueprints.md` from static HTML/CSS snippets to fully-interactive, type-safe production components (Async Action Button with spinner, Zod Lead Form with server feedback, Living Data Table with real CSV export and filters, Dynamic Cart Drawer with reactive calculations).
+- **Enhanced Global System Rules (`AGENTS.md` & `SKILL.md`)**: Injected Directives 6, 7, and 8 across all AI environments (Cursor, Windsurf, Trae, Codex, Antigravity, Claude, OpenCode).
+- **Package & CLI**: Updated to version `4.0.0` with updated metadata, keywords, and automated test suite verification.
+
+---
+
 ## [3.0.0] - 2026-07-28
 
 ### Added
@@ -21,6 +40,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - **4 Full-Stack Product Archetypes**: Added `fullstack-app`, `saas-micro`, `api-service`, and `admin-portal`.
 - **4 New Direct Commands**: Added `/build-fullstack-app`, `/refactor-codebase`, `/security-audit`, and `/add-feature`.
 - **Test-Driven AI Directive**: Mandatory rule instructing AI agents to run test suites (`npm test`, `vitest`, `playwright`) and verify zero failure exit code before declaring tasks complete.
+
+---
 
 ## [2.0.0] - 2026-07-14
 
@@ -38,7 +59,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - **Honest Auto-Detection**: CLI automatically probes for active Gemini Antigravity, Claude, Cursor, Windsurf, Trae, Codex, and OpenCode environment signatures before installing.
 - **Automated CLI Test Suite**: Created `tests/cli.test.js` using Node's native test runner (`node --test`), providing test coverage for dry-runs, backups, safe removal, status, and exit codes.
 - **Bilingual Documentation**: Created synchronized `README.es.md` (Spanish) and `README.md` (English) with interactive language toggles, Before vs After transformation matrix, and live code snippets.
-- **Audit Documentation**: Created `AUDIT.md` mapping risk priorities, contradiciton fixes, and rule preservation matrices.
+- **Audit Documentation**: Created `AUDIT.md` mapping risk priorities, contradiction fixes, and rule preservation matrices.
 
 ### Changed
 - **Relative Path Bindings**: Removed all hardcoded absolute `file:///` URLs across `SKILL.md` and documentation, replacing them with relative Markdown links (`./references/`).

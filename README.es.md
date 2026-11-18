@@ -5,16 +5,16 @@
 </p>
 
 <p align="center">
-  <img src="https://img.shields.io/badge/RELEASE-v3.0.0-blue?style=flat-square" alt="Release">
-  <img src="https://img.shields.io/badge/REASONING_RULES-350+-purple?style=flat-square" alt="Reglas">
-  <img src="https://img.shields.io/badge/FULLSTACK-ENABLED-emerald?style=flat-square" alt="FullStack">
-  <img src="https://img.shields.io/badge/CLI-v3.0.0-cyan?style=flat-square" alt="CLI">
+  <img src="https://img.shields.io/badge/RELEASE-v4.0.0-blue?style=flat-square" alt="Release">
+  <img src="https://img.shields.io/badge/ZERO_DEAD_UI-ENFORCED-emerald?style=flat-square" alt="Zero Dead UI">
+  <img src="https://img.shields.io/badge/SMART_INTENT-ENABLED-purple?style=flat-square" alt="Smart Intent Expansion">
+  <img src="https://img.shields.io/badge/CLI-v4.0.0-cyan?style=flat-square" alt="CLI">
   <img src="https://img.shields.io/badge/TESTS-100%25_PASSING-brightgreen?style=flat-square" alt="Tests">
   <img src="https://img.shields.io/badge/LICENSE-MIT-green?style=flat-square" alt="Licencia">
 </p>
 
 <p align="center">
-  <b>El Framework Maestro para IAs que inyecta arquitectura de software full-stack, seguridad OWASP, type-safety, pruebas automatizadas, inteligencia de diseño contextual, físicas 3D y producción de aplicaciones y webs comerciales en minutos.</b>
+  <b>El Framework Maestro para IAs Agénticas que inyecta Zero-Dead-UI (cero botones decorativos, 100% lógica funcional real), reconocimiento autónomo de datos del proyecto, expansión inteligente de intención ("escribe menos, produce más"), arquitectura full-stack type-safe, seguridad OWASP y diseño de ultra-alta fidelidad.</b>
 </p>
 
 <p align="center">
@@ -61,6 +61,23 @@ npx nt-skill-supreme init
 
 ---
 
+## 💥 La Diferencia Real: Antes vs Después (v4.0)
+
+¿Por qué las aplicaciones generadas con **NT-SKILL SUPREME v4.0** superan radicalmente las limitaciones de las IAs básicas?
+
+| Característica | ❌ Sin Skill (Generación IA Básica) | 🚀 Con NT-SKILL SUPREME v4.0 |
+|---|---|---|
+| **Interactividad y Botones** | Botones cosméticos sin acción (`onClick={() => console.log()}` o `#`) | **Zero-Dead-UI**: Ciclo completo de 4 estados (`idle`, `pending`, `success`, `error`), prevención de doble submit, spinners y mutaciones reales |
+| **Datos del Proyecto** | Inventa mocks estáticos aislados sin conexión con el backend | **Reconocimiento Autónomo**: Inspecciona previamente esquemas ORM (Prisma/Drizzle/Supabase), tipos y stores existentes para enlazar datos reales |
+| **Esfuerzo del Usuario** | Exige prompts larguísimos detallando cada estado, tipo y validación | **Smart Intent Expansion**: Con prompts breves de 5-10 palabras la IA deduce toda la arquitectura, edge cases, toasts y accesibilidad |
+| **Formularios y Validación** | Formularios que no envían nada o no validan campos | Validación Zod en tiempo real, accesibilidad ARIA, spinners de envío y feedback del servidor |
+| **Tablas y Listas** | Tablas muertas sin filtros ni acciones | Tablas de datos vivas con búsqueda reactiva, ordenamiento, estado vacío y exportación a CSV |
+| **Arquitectura y Estado** | Mezcla estado de API en stores globales a ciegas | Separa estrictamente Server State (TanStack Query) y Client UI State con rollback optimista |
+| **Seguridad OWASP** | Vulnerable a SQLi, XSS y rutas no autenticadas | Defensas OWASP, sanitización, headers CSP y cookies HttpOnly |
+| **Testing y Calidad** | Borra o ignora tests que fallan para simular éxito | Verificación Test-Driven obligatoria (Vitest / Playwright 100% pass) |
+
+---
+
 ## 🎨 Perfiles Visuales Contextuales
 
 Adapta la intensidad del diseño dinámicamente según el tipo de proyecto:
@@ -68,22 +85,6 @@ Adapta la intensidad del diseño dinámicamente según el tipo de proyecto:
 - **`minimal`**: Elegancia editorial, enfoque en tipografía, ritmo de espacios, movimiento discreto, cero elementos recargados. *(Ideal para marcas de lujo, firmas legales, blogs y portafolios ejecutivos).*
 - **`balanced`** *(Predeterminado)*: Estética premium, micro-interacciones táctiles, profundidad moderada, contraste WCAG AA, animaciones fluidas. *(Ideal para SaaS, webs de agencias, clínicas y servicios locales).*
 - **`supreme`**: Alto impacto visual, inclinación 3D tilt al hover, seguimiento de spotlight, animaciones nativas de scroll y profundidad parallax. *(Ideal para lanzamientos de producto, experiencias web y showcases tecnológicos).*
-
----
-
-## 💥 La Diferencia Real: Antes vs Después
-
-¿Por qué las aplicaciones y webs generadas con **NT-SKILL SUPREME v3.0** convierten y funcionan sin errores?
-
-| Característica | ❌ Sin Skill (Generación IA Estándar) | 🚀 Con NT-SKILL SUPREME v3.0 |
-|---|---|---|
-| **Arquitectura y Estado** | Mezcla estado de API en stores globales a ciegas | Separa estrictamente Server State (TanStack Query) y Client UI State |
-| **APIs y Type-Safety** | Tipos `any` sueltos y payloads sin validar | Validación Zod en rutas, handlers tipados y ORMs (Drizzle/Prisma) |
-| **Seguridad OWASP** | Vulnerable a SQLi, XSS y rutas no autenticadas | Defensas OWASP, sanitización con DOMPurify, headers CSP y cookies HttpOnly |
-| **Testing y Calidad** | Borra o ignora tests que fallan para simular éxito | Verificación Test-Driven obligatoria (Vitest / Playwright 100% pass) |
-| **Diseño y Paletas** | Fondo blanco plano y azul genérico `#3b82f6` ("AI Slop") | Paletas HSL adaptativas, desenfoque Glassmorphic y físicas táctiles |
-| **Hover y Cursor** | Tarjetas planas sin profundidad visual | Efecto **3D Card Hover Tilt** con media queries para mouse real |
-| **CRO y Datos Reales** | Formularios largos y datos de marketing falsos | Regla de Valor en 3s, prueba social real y cero estadísticas inventadas |
 
 ---
 
@@ -95,8 +96,8 @@ Adapta la intensidad del diseño dinámicamente según el tipo de proyecto:
 | `/build-client-site [nicho] [--style minimal\|balanced\|supreme]` | **Motor para Agencias**: Genera una web comercial completa en 1 solo archivo HTML/CSS/JS (Odontología, Gimnasio, Abogados, Restaurantes, Agencias, SaaS). |
 | `/refactor-codebase` | Audita y reestructura el código existente aplicando principios SOLID, estándares de type-safety y arquitectura limpia. |
 | `/security-audit` | Analiza el código buscando vulnerabilidades OWASP Top 10, fallas de sanitización, falta de rate-limiting y fugas de llaves secretas. |
-| `/add-feature [tipo]` | Inyecta módulos full-stack (Autenticación Supabase/Auth0, Pagos Stripe, Panel Admin, Upload a S3/R2). |
-| `/add-section [tipo]` | Inyecta secciones de producción (Header Pegajoso, Hero con Prueba Social, Switch de Precios, Acordeón FAQ, Formulario de Lead, Botón de WhatsApp). |
+| `/add-feature [tipo]` | Inyecta módulos full-stack con cableado real (Autenticación Supabase/Auth0, Pagos Stripe, Panel Admin, Upload a S3/R2). |
+| `/add-section [tipo]` | Inyecta secciones de producción con lógica funcional (Header Pegajoso, Hero con Prueba Social, Switch de Precios, Lead Form con Zod). |
 | `/rapid-localize` | Reemplaza placeholders con la marca, teléfono, WhatsApp y dirección del cliente en segundos. |
 | `/design-audit` | Audita la web para corregir contrastes, eliminar Slop de IA, verificar accesibilidad y asegurar estados interactivos. |
 | `/polish-ui [--style minimal\|balanced\|supreme]` | Eleva el diseño aplicando sombras flotantes, desenfoques glassmorphic y fuentes tipográficas según el perfil seleccionado. |
@@ -114,16 +115,17 @@ nt-skill-supreme/
 ├── SKILL.md                          # Definición Maestra de la Skill (Instrucciones de la IA)
 ├── AGENTS.md                         # Reglas del Sistema para Cursor, Trae, Windsurf, OpenCode, Codex y Antigravity
 ├── AUDIT.md                          # Auditoría Completa y Evaluación de Arquitectura
-├── CHANGELOG.md                      # Historial de Cambios (Versión Semántica 3.0.0)
+├── CHANGELOG.md                      # Historial de Cambios (Versión Semántica 4.0.0)
 ├── references/                       # Manuales Técnicos de Referencia
-│   ├── state-and-data-fetching.md    # [v3.0] Estado Server vs Client, TanStack Query, Zustand, carga de 4 estados
-│   ├── api-and-db-contracts.md       # [v3.0] Validación Zod, estándares ORM Drizzle/Prisma, Postgres RLS
-│   ├── auth-and-multi-tenancy.md     # [v3.0] OAuth, Passkeys, cookies de sesión, middleware multi-tenant, RBAC
-│   ├── testing-and-qa.md             # [v3.0] Vitest, Playwright E2E, directiva de verificación IA, anti-regresión
-│   ├── security-and-hardening.md     # [v3.0] Defensas OWASP, sanitización, rate-limiting, headers CSP
-│   ├── fullstack-scaffolding.md      # [v3.0] Arquitectura de carpetas, webhooks de Stripe, upload Cloud storage
+│   ├── functional-logic-and-wiring.md# [v4.0] Cero botones muertos, mutaciones asíncronas, prospección de datos
+│   ├── component-blueprints.md       # [v4.0] Blueprints interactivos (Botón asíncrono, Zod form, Living Table, Cart)
+│   ├── state-and-data-fetching.md    # [v4.0] Detección de stores, TanStack Query, Zustand, rollback optimista
+│   ├── api-and-db-contracts.md       # [v4.0] Schema-to-UI Auto-Projection, validación Zod, Drizzle/Prisma, RLS
+│   ├── auth-and-multi-tenancy.md     # OAuth, Passkeys, cookies de sesión, middleware multi-tenant, RBAC
+│   ├── testing-and-qa.md             # Vitest, Playwright E2E, directiva de verificación IA, anti-regresión
+│   ├── security-and-hardening.md     # Defensas OWASP, sanitización, rate-limiting, headers CSP
+│   ├── fullstack-scaffolding.md      # Arquitectura de carpetas, webhooks de Stripe, upload Cloud storage
 │   ├── niche-blueprints.md           # Planos de estructura comercial por industria
-│   ├── component-blueprints.md       # Snippets de componentes listos para producción
 │   ├── cro-and-performance.md        # Psicología de conversión en 3s y velocidad web
 │   ├── motion-and-physics.md         # Animaciones CSS de scroll, Inclinación 3D e interacciones
 │   ├── image-gen-and-fallbacks.md    # Generación de imágenes por IA y fallbacks Unsplash/SVG

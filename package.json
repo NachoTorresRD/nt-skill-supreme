@@ -1,7 +1,7 @@
 {
   "name": "nt-skill-supreme",
-  "version": "3.0.0",
-  "description": "The master AI full-stack software engineering, design engineering, UI/UX, type-safety, testing, security, and rapid agency production skill for AI agents (Gemini Antigravity, Claude, Cursor, Codex, Trae, Windsurf, OpenCode).",
+  "version": "4.0.0",
+  "description": "Next-Gen AI Full-Stack Software Engineering, Design Intelligence, Zero-Dead-UI, Autonomous Project Data Discovery, and Smart Intent Expansion Skill for AI agents (Gemini Antigravity, Claude, Cursor, Codex, Trae, Windsurf, OpenCode).",
   "main": "SKILL.md",
   "bin": {
     "nt-skill-supreme": "./bin/cli.js"
@@ -13,7 +13,11 @@
   "keywords": [
     "nt-skill-supreme",
     "ai-skill",
+    "zero-dead-ui",
+    "smart-intent-expansion",
     "full-stack-engineering",
+    "functional-logic",
+    "data-discovery",
     "design-system",
     "ui-ux",
     "antigravity",

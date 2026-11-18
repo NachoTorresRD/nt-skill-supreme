@@ -37,7 +37,7 @@ describe('NT-SKILL SUPREME CLI Test Suite', () => {
   test('CLI --version outputs correct version string', () => {
     const res = runCli('--version');
     assert.equal(res.code, 0);
-    assert.match(res.stdout, /^v3\.0\.0/);
+    assert.match(res.stdout, /^v4\.0\.0/);
   });
 
   test('CLI --help outputs usage banner', () => {

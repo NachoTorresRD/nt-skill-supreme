@@ -1,23 +1,23 @@
 # Taste-Skill & Anti-Slop Visual Standards Reference
 
-*Eliminating generic AI frontend templates and instilling high aesthetic taste.*
+*Building distinctive, coherent interfaces without defaulting to generic templates or decorative excess.*
 
 ---
 
 ## 🚫 The Anti-Slop Commandments
 
-AI models frequently default to generic, uninspired design templates ("AI slop"). Follow these strict anti-slop rules:
+Use these as warning signs, not rigid bans. First identify the product, audience, existing design system, and primary task; choose only visual treatments that improve clarity or character.
 
-1. **Ban Generic Blue/Purple Gradients on White**: Avoid plain centered white card containers on light gray backgrounds with default `#3b82f6` blue buttons.
-2. **Ban Centered Feature Trios**: Do not default to 3 equal-width boxes with generic lucide icons in pastel circles. Vary column widths, grid rhythm, visual weights, and feature card heights.
-3. **Ban Unstyled Inputs & Buttons**: Input controls must feature custom focus rings, elevated background depth, clean label alignment, and contextual placeholder typography.
-4. **Enforce Cohesive Design Systems**: Every interface must adopt a specific design motif (e.g., Sleek Dark Glassmorphic, Modern Minimalist Monochrome, High-Tech Cyberpunk Terminal, Neobrutalist Expressive).
+1. Avoid familiar templates when they do not fit the product; a restrained layout is valid when it best serves the workflow.
+2. Use varied layout rhythm only when it improves hierarchy, comparison, or storytelling. Symmetry and repeated cards are appropriate for many operational interfaces.
+3. Make controls legible, accessible, and consistent with the system; decorative elevation is optional.
+4. Choose a coherent visual direction from the brand, content, audience, and existing product. Do not invent a motif solely to appear distinctive.
 
 ---
 
 ## 🎨 Aesthetic Presets & Palette Tokens
 
-### 1. Dark Glassmorphism (Default Modern Sleek)
+### 1. Dark Glassmorphism (Use When Appropriate)
 ```css
 :root {
   --bg-base: hsl(224, 25%, 6%);
@@ -59,6 +59,13 @@ AI models frequently default to generic, uninspired design templates ("AI slop")
 
 ## 🖼 Image & Typography Craft
 
-- **Font Pairing Rule**: Always pair a high-character display font (`Space Grotesk`, `Outfit`, `Playfair Display`) with an ultra-readable UI body font (`Inter`, `Plus Jakarta Sans`).
-- **Aspect Ratio Control**: Use consistent media container aspect ratios (`aspect-video`, `aspect-[4/3]`, `aspect-square`) with `object-fit: cover` and subtle hover scale filters.
-- **Glass Backdrop Blurs**: Card overlays must use `backdrop-filter: blur(12px)` to blend gracefully with ambient background lighting.
+- **Typography**: Use the project's available, licensed fonts. Pair display and body faces only when it strengthens hierarchy and remains readable.
+- **Media**: Choose aspect ratios for the content and layout. Use `cover` for intentional crops and `contain` when the whole asset must remain inspectable; hover zoom is optional.
+- **Surfaces**: Use blur, glow, shadows, and gradients sparingly. Avoid them when they reduce contrast, performance, or clarity.
+
+## Quick Design Pass
+
+1. Identify the primary user, task, and most important content.
+2. Reuse brand tokens and components; choose a visual direction only where the product leaves room.
+3. Establish hierarchy, readable type, consistent spacing, and responsive layout before adding effects.
+4. Check key states and representative mobile/desktop widths. Prefer a real visual check when available; do not claim one was performed otherwise.

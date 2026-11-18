@@ -1,131 +1,494 @@
-# NT-Design Engine: Component Blueprints & Snippets
+# NT-Design Engine: Production Component Blueprints (Zero-Dead-UI)
 
-*Production-ready HTML, CSS, and JS snippets designed for instantaneous client site assembly.*
+*Enterprise-grade, type-safe, fully-interactive component blueprints. Every component implements real functional logic, async states, data binding, and zero dummy code.*
 
 ---
 
-## 📱 1. Sticky Navigation Bar + Mobile Drawer
+## ⚡ 1. Interactive Action Button with Real Mutation & Loading States
 
-```html
-<header class="navbar">
-  <div class="nav-container">
-    <a href="#" class="brand-logo">BrandName</a>
-    <nav class="nav-links desktop-only">
-      <a href="#services">Services</a>
-      <a href="#about">About</a>
-      <a href="#pricing">Pricing</a>
-      <a href="#contact" class="btn btn-primary">Book Consultation</a>
-    </nav>
-    <button class="hamburger mobile-only" onclick="toggleMobileNav()" aria-label="Toggle Navigation Menu">
-      <span></span><span></span><span></span>
-    </button>
-  </div>
-</header>
+A production-grade action button that manages pending states, prevents double clicks, provides visual spinner feedback, and handles errors cleanly.
 
-<div class="mobile-drawer" id="mobileDrawer" role="dialog" aria-modal="true" aria-label="Mobile Navigation">
-  <button class="close-drawer" onclick="toggleMobileNav()" aria-label="Close Navigation">&times;</button>
-  <a href="#services" onclick="toggleMobileNav()">Services</a>
-  <a href="#about" onclick="toggleMobileNav()">About</a>
-  <a href="#pricing" onclick="toggleMobileNav()">Pricing</a>
-  <a href="#contact" class="btn btn-primary" onclick="toggleMobileNav()">Book Consultation</a>
-</div>
+### React / Next.js / TypeScript:
+```tsx
+'use client';
 
-<style>
-  .navbar {
-    position: sticky; top: 0; z-index: 100;
-    background: rgba(10, 10, 15, 0.85); backdrop-filter: blur(16px);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-    padding: 1rem 1.5rem;
-  }
-  .nav-container { max-width: 1200px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; }
-  .mobile-drawer {
-    position: fixed; top: 0; right: 0; width: 80%; height: 100vh; z-index: 200;
-    background: #0f172a; padding: 2rem; display: flex; flex-direction: column; gap: 1.5rem;
-    transform: translateX(100%); transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-  }
-  .mobile-drawer.open { transform: translateX(0); }
-</style>
-<script>
-  function toggleMobileNav() {
-    document.getElementById('mobileDrawer').classList.toggle('open');
-  }
-</script>
+import React, { useState } from 'react';
+
+interface AsyncActionButtonProps {
+  label: string;
+  loadingLabel?: string;
+  onExecute: () => Promise<void>;
+  variant?: 'primary' | 'destructive' | 'secondary';
+  className?: string;
+}
+
+export const AsyncActionButton: React.FC<AsyncActionButtonProps> = ({
+  label,
+  loadingLabel = 'Processing...',
+  onExecute,
+  variant = 'primary',
+  className = '',
+}) => {
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+
+  const handleClick = async () => {
+    if (isLoading) return;
+    setIsLoading(true);
+    setError(null);
+
+    try {
+      await onExecute();
+    } catch (err: unknown) {
+      const message = err instanceof Error ? err.message : 'Action failed. Please try again.';
+      setError(message);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  const variantStyles = {
+    primary: 'bg-primary hover:bg-primary/90 text-white shadow-sm',
+    destructive: 'bg-rose-600 hover:bg-rose-700 text-white shadow-sm',
+    secondary: 'bg-surface-2 hover:bg-surface-3 text-text-main border border-border-subtle',
+  };
+
+  return (
+    <div className="inline-flex flex-col items-start gap-1.5">
+      <button
+        type="button"
+        disabled={isLoading}
+        onClick={handleClick}
+        className={`relative inline-flex items-center justify-center gap-2 px-4 py-2.5 text-sm font-semibold rounded-lg transition-all duration-150 active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed disabled:active:scale-100 ${variantStyles[variant]} ${className}`}
+        aria-busy={isLoading}
+      >
+        {isLoading ? (
+          <>
+            <svg className="animate-spin h-4 w-4 text-current" viewBox="0 0 24 24" fill="none">
+              <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
+              <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z" />
+            </svg>
+            <span>{loadingLabel}</span>
+          </>
+        ) : (
+          <span>{label}</span>
+        )}
+      </button>
+      {error && (
+        <p className="text-xs text-rose-500 font-medium animate-fadeIn" role="alert">
+          {error}
+        </p>
+      )}
+    </div>
+  );
+};
 ```
 
 ---
 
-## ⚡ 2. High-Converting Hero with Social Proof Stack (Grounded Data)
+## 📝 2. Production Form with Zod Validation & Server Submission
 
-```html
-<section class="hero">
-  <div class="hero-content">
-    <div class="social-proof-pill">
-      <div class="avatar-stack">
-        <span class="avatar">👤</span><span class="avatar">👤</span><span class="avatar">👤</span>
+Never create forms with empty handlers. Enforce real validation, inline error feedback, and complete server submission:
+
+```tsx
+'use client';
+
+import React from 'react';
+import { useForm } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { z } from 'zod';
+
+export const LeadSchema = z.object({
+  fullName: z.string().min(2, 'Name must have at least 2 characters').max(60),
+  email: z.string().email('Please provide a valid email address'),
+  phone: z.string().min(7, 'Phone number must have at least 7 digits').optional().or(z.literal('')),
+  notes: z.string().max(500, 'Notes cannot exceed 500 characters').optional(),
+});
+
+export type LeadInput = z.infer<typeof LeadSchema>;
+
+interface LeadFormProps {
+  onSubmitLead: (data: LeadInput) => Promise<{ success: boolean; error?: string }>;
+  onSuccessCallback?: () => void;
+}
+
+export const LeadForm: React.FC<LeadFormProps> = ({ onSubmitLead, onSuccessCallback }) => {
+  const [serverError, setServerError] = React.useState<string | null>(null);
+  const [successMessage, setSuccessMessage] = React.useState<string | null>(null);
+
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors, isSubmitting },
+  } = useForm<LeadInput>({
+    resolver: zodResolver(LeadSchema),
+  });
+
+  const handleFormSubmit = async (data: LeadInput) => {
+    setServerError(null);
+    setSuccessMessage(null);
+
+    const result = await onSubmitLead(data);
+    if (!result.success) {
+      setServerError(result.error || 'Failed to submit form. Please check your data.');
+      return;
+    }
+
+    setSuccessMessage('Thank you! Your information has been received.');
+    reset();
+    if (onSuccessCallback) onSuccessCallback();
+  };
+
+  return (
+    <form onSubmit={handleSubmit(handleFormSubmit)} className="flex flex-col gap-4 max-w-md w-full bg-surface-1 p-6 rounded-2xl border border-border-subtle backdrop-blur-md">
+      <div>
+        <label htmlFor="fullName" className="block text-xs font-semibold uppercase tracking-wider text-text-muted mb-1">
+          Full Name *
+        </label>
+        <input
+          id="fullName"
+          type="text"
+          placeholder="Jane Doe"
+          aria-invalid={Boolean(errors.fullName)}
+          aria-describedby={errors.fullName ? 'fullName-error' : undefined}
+          {...register('fullName')}
+          className="w-full px-3.5 py-2.5 rounded-lg bg-surface-2 border border-border-subtle text-text-main placeholder-text-muted/60 focus:outline-none focus:ring-2 focus:ring-primary/50 text-sm"
+        />
+        {errors.fullName && (
+          <p id="fullName-error" className="mt-1 text-xs text-rose-500 font-medium">
+            {errors.fullName.message}
+          </p>
+        )}
       </div>
-      <span>[Placeholder: Real Client Rating / Social Proof Stat]</span>
-    </div>
-    <h1 class="hero-title">Transform Your Business Operations In Days, Not Months.</h1>
-    <p class="hero-lead">We deliver high-end, conversion-focused websites tailored to your commercial goals.</p>
-    <div class="hero-ctas">
-      <!-- Visually Dominant Primary CTA -->
-      <a href="#contact" class="btn btn-primary">Get Started Now</a>
-      <!-- Lower Hierarchy Secondary CTA -->
-      <a href="#services" class="btn btn-ghost">Learn More &rarr;</a>
-    </div>
-  </div>
-</section>
+
+      <div>
+        <label htmlFor="email" className="block text-xs font-semibold uppercase tracking-wider text-text-muted mb-1">
+          Work Email *
+        </label>
+        <input
+          id="email"
+          type="email"
+          placeholder="jane@company.com"
+          aria-invalid={Boolean(errors.email)}
+          aria-describedby={errors.email ? 'email-error' : undefined}
+          {...register('email')}
+          className="w-full px-3.5 py-2.5 rounded-lg bg-surface-2 border border-border-subtle text-text-main placeholder-text-muted/60 focus:outline-none focus:ring-2 focus:ring-primary/50 text-sm"
+        />
+        {errors.email && (
+          <p id="email-error" className="mt-1 text-xs text-rose-500 font-medium">
+            {errors.email.message}
+          </p>
+        )}
+      </div>
+
+      {serverError && (
+        <div className="p-3 bg-rose-500/10 border border-rose-500/20 rounded-lg text-rose-400 text-xs font-medium" role="alert">
+          {serverError}
+        </div>
+      )}
+
+      {successMessage && (
+        <div className="p-3 bg-emerald-500/10 border border-emerald-500/20 rounded-lg text-emerald-400 text-xs font-medium" role="status">
+          {successMessage}
+        </div>
+      )}
+
+      <button
+        type="submit"
+        disabled={isSubmitting}
+        className="w-full mt-2 py-3 px-4 rounded-lg bg-primary hover:bg-primary-hover text-white font-semibold text-sm transition-all duration-150 active:scale-98 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+      >
+        {isSubmitting ? 'Sending Request...' : 'Submit Request'}
+      </button>
+    </form>
+  );
+};
 ```
 
 ---
 
-## 💳 3. Interactive Pricing Cards with Billing Switch
+## 📊 3. Living Data Table with Filtering, Sorting & Real CSV Export
 
-```html
-<section id="pricing" class="pricing-section">
-  <div class="pricing-header">
-    <h2>Transparent Pricing</h2>
-    <div class="toggle-container">
-      <span>Monthly</span>
-      <input type="checkbox" id="billingToggle" onchange="toggleBilling()" aria-label="Toggle Annual Billing">
-      <span>Annual (Discounted)</span>
+Tables must connect directly to data arrays, provide working instant search, column sorting, and actionable export:
+
+```tsx
+'use client';
+
+import React, { useState, useMemo } from 'react';
+
+export interface DataRow {
+  id: string;
+  name: string;
+  category: string;
+  status: 'active' | 'pending' | 'archived';
+  amount: number;
+}
+
+interface DataTableProps {
+  data: DataRow[];
+  onRowDelete?: (id: string) => Promise<void>;
+}
+
+export const LivingDataTable: React.FC<DataTableProps> = ({ data, onRowDelete }) => {
+  const [search, setSearch] = useState('');
+  const [selectedStatus, setSelectedStatus] = useState<string>('all');
+  const [sortField, setSortField] = useState<keyof DataRow>('name');
+  const [sortAsc, setSortAsc] = useState(true);
+
+  const filteredData = useMemo(() => {
+    return data
+      .filter((item) => {
+        const matchesSearch = item.name.toLowerCase().includes(search.toLowerCase());
+        const matchesStatus = selectedStatus === 'all' || item.status === selectedStatus;
+        return matchesSearch && matchesStatus;
+      })
+      .sort((a, b) => {
+        const valA = a[sortField];
+        const valB = b[sortField];
+        if (valA < valB) return sortAsc ? -1 : 1;
+        if (valA > valB) return sortAsc ? 1 : -1;
+        return 0;
+      });
+  }, [data, search, selectedStatus, sortField, sortAsc]);
+
+  const handleExportCSV = () => {
+    const headers = ['ID,Name,Category,Status,Amount'];
+    const rows = filteredData.map(
+      (r) => `"${r.id}","${r.name}","${r.category}","${r.status}",${r.amount}`
+    );
+    const csvContent = [headers, ...rows].join('\n');
+    const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = `export-${new Date().toISOString().slice(0, 10)}.csv`;
+    link.click();
+    URL.revokeObjectURL(url);
+  };
+
+  return (
+    <div className="flex flex-col gap-4 w-full bg-surface-1 rounded-2xl border border-border-subtle p-5">
+      {/* Controls Bar */}
+      <div className="flex flex-wrap items-center justify-between gap-3">
+        <div className="flex items-center gap-2 flex-1 max-w-sm">
+          <input
+            type="search"
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+            placeholder="Search records..."
+            className="w-full px-3 py-2 bg-surface-2 border border-border-subtle rounded-lg text-sm text-text-main focus:outline-none focus:ring-2 focus:ring-primary/40"
+          />
+        </div>
+        <div className="flex items-center gap-2">
+          <select
+            value={selectedStatus}
+            onChange={(e) => setSelectedStatus(e.target.value)}
+            className="px-3 py-2 bg-surface-2 border border-border-subtle rounded-lg text-sm text-text-main focus:outline-none"
+          >
+            <option value="all">All Statuses</option>
+            <option value="active">Active</option>
+            <option value="pending">Pending</option>
+            <option value="archived">Archived</option>
+          </select>
+
+          <button
+            type="button"
+            onClick={handleExportCSV}
+            className="px-3.5 py-2 bg-surface-2 hover:bg-surface-3 text-text-main border border-border-subtle rounded-lg text-sm font-medium transition-colors"
+          >
+            Export CSV
+          </button>
+        </div>
+      </div>
+
+      {/* Table */}
+      <div className="overflow-x-auto rounded-lg border border-border-subtle">
+        <table className="w-full text-left text-sm">
+          <thead className="bg-surface-2 text-text-muted text-xs uppercase tracking-wider">
+            <tr>
+              <th className="p-3 cursor-pointer select-none" onClick={() => { setSortField('name'); setSortAsc(!sortAsc); }}>
+                Name {sortField === 'name' && (sortAsc ? '▲' : '▼')}
+              </th>
+              <th className="p-3">Category</th>
+              <th className="p-3">Status</th>
+              <th className="p-3 text-right cursor-pointer select-none" onClick={() => { setSortField('amount'); setSortAsc(!sortAsc); }}>
+                Amount {sortField === 'amount' && (sortAsc ? '▲' : '▼')}
+              </th>
+              {onRowDelete && <th className="p-3 text-center">Actions</th>}
+            </tr>
+          </thead>
+          <tbody className="divide-y divide-border-subtle">
+            {filteredData.length > 0 ? (
+              filteredData.map((row) => (
+                <tr key={row.id} className="hover:bg-surface-2/40 transition-colors">
+                  <td className="p-3 font-medium text-text-main">{row.name}</td>
+                  <td className="p-3 text-text-muted">{row.category}</td>
+                  <td className="p-3">
+                    <span className={`inline-flex px-2 py-0.5 rounded-full text-xs font-semibold ${
+                      row.status === 'active' ? 'bg-emerald-500/10 text-emerald-400' :
+                      row.status === 'pending' ? 'bg-amber-500/10 text-amber-400' : 'bg-slate-500/10 text-slate-400'
+                    }`}>
+                      {row.status}
+                    </span>
+                  </td>
+                  <td className="p-3 text-right font-mono tabular-nums text-text-main">${row.amount.toFixed(2)}</td>
+                  {onRowDelete && (
+                    <td className="p-3 text-center">
+                      <button
+                        onClick={() => onRowDelete(row.id)}
+                        className="text-xs text-rose-400 hover:text-rose-300 font-semibold px-2 py-1 rounded hover:bg-rose-500/10 transition-colors"
+                      >
+                        Delete
+                      </button>
+                    </td>
+                  )}
+                </tr>
+              ))
+            ) : (
+              <tr>
+                <td colSpan={5} className="p-8 text-center text-text-muted text-sm">
+                  No records match your criteria.
+                </td>
+              </tr>
+            )}
+          </tbody>
+        </table>
+      </div>
     </div>
-  </div>
-  <div class="pricing-cards">
-    <div class="card pricing-card">
-      <h3>Basic Plan</h3>
-      <div class="price" id="basicPrice">$29<span>/mo</span></div>
-      <ul>
-        <li>✓ Full Responsive Design</li>
-        <li>✓ SEO Optimization</li>
-      </ul>
-      <a href="#contact" class="btn btn-secondary">Select Basic</a>
-    </div>
-    <div class="card pricing-card featured">
-      <span class="badge">Recommended</span>
-      <h3>Pro Plan</h3>
-      <div class="price" id="proPrice">$79<span>/mo</span></div>
-      <ul>
-        <li>✓ Everything in Basic</li>
-        <li>✓ Custom Booking System</li>
-        <li>✓ Priority Support</li>
-      </ul>
-      <a href="#contact" class="btn btn-primary">Select Pro</a>
-    </div>
-  </div>
-</section>
-<script>
-  function toggleBilling() {
-    const isAnnual = document.getElementById('billingToggle').checked;
-    document.getElementById('basicPrice').innerHTML = isAnnual ? '$23<span>/mo</span>' : '$29<span>/mo</span>';
-    document.getElementById('proPrice').innerHTML = isAnnual ? '$63<span>/mo</span>' : '$79<span>/mo</span>';
-  }
-</script>
+  );
+};
 ```
 
 ---
 
-## 💬 4. Contextual WhatsApp Floating Button (Local Business Only)
+## 🛒 4. Dynamic Cart / State Drawer with Real Quantity Controls & Checkout
+
+Never output a static cart. Implement full quantity management, instant subtotal recalculations, and checkout handoff:
+
+```tsx
+'use client';
+
+import React from 'react';
+
+export interface CartItem {
+  id: string;
+  name: string;
+  price: number;
+  quantity: number;
+  imageUrl?: string;
+}
+
+interface CartDrawerProps {
+  isOpen: boolean;
+  onClose: () => void;
+  items: CartItem[];
+  onUpdateQuantity: (id: string, delta: number) => void;
+  onRemoveItem: (id: string) => void;
+  onCheckout: () => Promise<void>;
+}
+
+export const CartDrawer: React.FC<CartDrawerProps> = ({
+  isOpen,
+  onClose,
+  items,
+  onUpdateQuantity,
+  onRemoveItem,
+  onCheckout,
+}) => {
+  const [isCheckingOut, setIsCheckingOut] = React.useState(false);
+
+  const subtotal = items.reduce((acc, item) => acc + item.price * item.quantity, 0);
+
+  const handleCheckoutClick = async () => {
+    setIsCheckingOut(true);
+    try {
+      await onCheckout();
+    } finally {
+      setIsCheckingOut(false);
+    }
+  };
+
+  if (!isOpen) return null;
+
+  return (
+    <div className="fixed inset-0 z-50 flex justify-end">
+      {/* Backdrop */}
+      <div className="fixed inset-0 bg-black/60 backdrop-blur-sm transition-opacity" onClick={onClose} />
+
+      {/* Drawer Panel */}
+      <div className="relative w-full max-w-md bg-surface-1 border-l border-border-subtle h-full shadow-2xl flex flex-col z-10 p-6">
+        <div className="flex items-center justify-between pb-4 border-b border-border-subtle">
+          <h2 className="text-lg font-bold text-text-main">Your Cart ({items.length})</h2>
+          <button onClick={onClose} className="p-2 rounded-lg text-text-muted hover:text-text-main hover:bg-surface-2" aria-label="Close cart">
+            ✕
+          </button>
+        </div>
+
+        {/* Item List */}
+        <div className="flex-1 overflow-y-auto py-4 space-y-4">
+          {items.length === 0 ? (
+            <div className="text-center py-12 text-text-muted text-sm">
+              Your cart is empty.
+            </div>
+          ) : (
+            items.map((item) => (
+              <div key={item.id} className="flex items-center justify-between gap-3 p-3 rounded-xl bg-surface-2/60 border border-border-subtle">
+                <div className="flex-1 min-w-0">
+                  <h4 className="text-sm font-semibold text-text-main truncate">{item.name}</h4>
+                  <p className="text-xs text-text-muted tabular-nums">${item.price.toFixed(2)} each</p>
+                </div>
+                <div className="flex items-center gap-1.5">
+                  <button
+                    onClick={() => onUpdateQuantity(item.id, -1)}
+                    disabled={item.quantity <= 1}
+                    className="w-7 h-7 rounded bg-surface-3 text-text-main disabled:opacity-40 flex items-center justify-center font-bold text-xs"
+                  >
+                    -
+                  </button>
+                  <span className="w-6 text-center text-sm font-semibold tabular-nums">{item.quantity}</span>
+                  <button
+                    onClick={() => onUpdateQuantity(item.id, 1)}
+                    className="w-7 h-7 rounded bg-surface-3 text-text-main flex items-center justify-center font-bold text-xs"
+                  >
+                    +
+                  </button>
+                  <button
+                    onClick={() => onRemoveItem(item.id)}
+                    className="ml-2 text-rose-400 hover:text-rose-300 text-xs font-semibold"
+                  >
+                    Remove
+                  </button>
+                </div>
+              </div>
+            ))
+          )}
+        </div>
+
+        {/* Footer Checkout */}
+        <div className="pt-4 border-t border-border-subtle space-y-3">
+          <div className="flex justify-between text-base font-bold text-text-main">
+            <span>Subtotal</span>
+            <span className="tabular-nums">${subtotal.toFixed(2)}</span>
+          </div>
+          <button
+            type="button"
+            disabled={items.length === 0 || isCheckingOut}
+            onClick={handleCheckoutClick}
+            className="w-full py-3 bg-primary hover:bg-primary-hover text-white font-bold rounded-xl transition-all duration-150 active:scale-98 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+          >
+            {isCheckingOut ? 'Redirecting to Checkout...' : 'Proceed to Checkout'}
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+};
+```
+
+---
+
+## 📱 5. Contextual WhatsApp Floating Button (Local Business Only)
 
 ```html
 <!-- Include for Local Business, Dental, Medical, Restaurant, or Local Services -->
